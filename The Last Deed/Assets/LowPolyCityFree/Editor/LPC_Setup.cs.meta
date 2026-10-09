@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8f6ecf240a8ddbbe96eff6484364793d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 414228
+  packageName: CITYBUILDER - FREE - Modular Low Poly City Kit
+  packageVersion: 1.0
+  assetPath: Assets/LowPolyCityFree/Editor/LPC_Setup.cs
+  uploadId: 1011724

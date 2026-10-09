@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: dbf74380e2a5025b9d9df9b8008545ea
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 414228
+  packageName: CITYBUILDER - FREE - Modular Low Poly City Kit
+  packageVersion: 1.0
+  assetPath: Assets/LowPolyCityFree/Runtime/LPC_Flicker.cs
+  uploadId: 1011724
