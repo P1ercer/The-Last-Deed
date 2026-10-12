@@ -89,19 +89,16 @@ namespace UnityEngine.XR.Interaction.Toolkit.XRHandLocomotion
         void OnEnable()
         {
             if (m_HandTrackingOrigin == null)
-                m_HandTrackingOrigin = ComponentLocatorUtility<XROrigin>.TryFindComponent(out var xrOrigin) ? xrOrigin.transform : null;
+            {
+                XROrigin xrOrigin = FindAnyObjectByType<XROrigin>();
+                m_HandTrackingOrigin = xrOrigin != null ? xrOrigin.transform : null;
+            }
 
             m_ActivateGestureDetection = StartCoroutine(ActivateGestureDetection());
 
             m_TeleportInteractor.gameObject.SetActive(false);
             m_TeleportInteractor.selectEntered.AddListener(OnTeleportSelectEntered);
             m_TeleportInteractor.selectExited.AddListener(OnTeleportSelectExited);
-        }
-
-        void OnDisable()
-        {
-            m_TeleportInteractor.selectEntered.RemoveListener(OnTeleportSelectEntered);
-            m_TeleportInteractor.selectExited.RemoveListener(OnTeleportSelectExited);
         }
 
 #if XR_HANDS_1_5_OR_NEWER
