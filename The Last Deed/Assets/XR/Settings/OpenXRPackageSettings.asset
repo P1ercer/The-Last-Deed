@@ -138,7 +138,7 @@ MonoBehaviour:
   lateLatchingDebug: 0
   optimizeMultiviewRenderRegions: 0
   m_multiviewRenderRegionsOptimizationMode: 0
-  m_hasMigratedMultiviewRenderRegions: 0
+  m_hasMigratedMultiviewRenderRegions: 1
   spacewarpMotionVectorTextureFormat: 0
 --- !u!114 &-7607438119604852677
 MonoBehaviour:
@@ -293,51 +293,51 @@ MonoBehaviour:
   m_Name: Standalone
   m_EditorClassIdentifier: Unity.XR.OpenXR::UnityEngine.XR.OpenXR.OpenXRSettings
   features:
-  - {fileID: -7289049948014708535}
-  - {fileID: -6059955008400652200}
-  - {fileID: 183053239013932173}
-  - {fileID: 555481885672562526}
-  - {fileID: 2692562957284693332}
-  - {fileID: -5630463687926901685}
-  - {fileID: -635216327335315043}
-  - {fileID: 5523792218224983089}
-  - {fileID: -1455678844731447275}
-  - {fileID: -1817462447142947956}
-  - {fileID: -4793744781791084513}
-  - {fileID: -4836136789055272531}
-  - {fileID: 5233233704801908542}
-  - {fileID: 6107553555018313795}
-  - {fileID: 6626691507944414330}
-  - {fileID: 2715635648017752523}
-  - {fileID: -6099491142331239263}
-  - {fileID: -4373859591906774347}
-  - {fileID: 6763741385840768739}
-  - {fileID: 727701844686707694}
-  - {fileID: -6744973375931784618}
-  - {fileID: 3281856507947450558}
-  - {fileID: 7651900490775676872}
-  - {fileID: -1126790698397689717}
-  - {fileID: 8809493366067336842}
-  - {fileID: -1974557480050175458}
-  - {fileID: 4523550933048677301}
-  - {fileID: 2373825970181670878}
-  - {fileID: -9172250391350909423}
-  - {fileID: 2425219505783814759}
   - {fileID: 1516946044324673836}
-  - {fileID: -2731951455708455617}
-  - {fileID: 779602955268531817}
-  - {fileID: 210261281542764376}
-  - {fileID: 3093425750811509717}
-  - {fileID: 5370502199193324644}
-  - {fileID: -1429804955707939118}
-  - {fileID: -4316524254392101769}
-  - {fileID: 7376827544570160314}
-  - {fileID: 4829267466983363464}
-  - {fileID: -4763807569101261590}
-  - {fileID: 6934853700130278118}
-  - {fileID: 3832634244721338178}
+  - {fileID: -5630463687926901685}
+  - {fileID: 6107553555018313795}
+  - {fileID: 183053239013932173}
+  - {fileID: -4373859591906774347}
   - {fileID: 2225336691558873093}
   - {fileID: 6211487316337076706}
+  - {fileID: -4763807569101261590}
+  - {fileID: 3281856507947450558}
+  - {fileID: -4793744781791084513}
+  - {fileID: -6099491142331239263}
+  - {fileID: -4836136789055272531}
+  - {fileID: 555481885672562526}
+  - {fileID: -1817462447142947956}
+  - {fileID: 6763741385840768739}
+  - {fileID: 2692562957284693332}
+  - {fileID: 5370502199193324644}
+  - {fileID: 727701844686707694}
+  - {fileID: 5233233704801908542}
+  - {fileID: 4523550933048677301}
+  - {fileID: 2425219505783814759}
+  - {fileID: -9172250391350909423}
+  - {fileID: 8809493366067336842}
+  - {fileID: -1974557480050175458}
+  - {fileID: 210261281542764376}
+  - {fileID: 2373825970181670878}
+  - {fileID: 3093425750811509717}
+  - {fileID: -2731951455708455617}
+  - {fileID: 7651900490775676872}
+  - {fileID: -1126790698397689717}
+  - {fileID: 779602955268531817}
+  - {fileID: -4316524254392101769}
+  - {fileID: 6934853700130278118}
+  - {fileID: 7376827544570160314}
+  - {fileID: 3832634244721338178}
+  - {fileID: 5523792218224983089}
+  - {fileID: 6626691507944414330}
+  - {fileID: -6059955008400652200}
+  - {fileID: -635216327335315043}
+  - {fileID: 4829267466983363464}
+  - {fileID: -1455678844731447275}
+  - {fileID: -7289049948014708535}
+  - {fileID: -6744973375931784618}
+  - {fileID: 2715635648017752523}
+  - {fileID: -1429804955707939118}
   customLoaderName: 
   m_renderMode: 1
   m_latencyOptimization: 0
@@ -1692,7 +1692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b862ee14fb479fbfe5fffe655d3ed3, type: 3}
   m_Name: MetaQuestTouchProControllerProfile Standalone
   m_EditorClassIdentifier: Unity.XR.OpenXR::UnityEngine.XR.OpenXR.Features.Interactions.MetaQuestTouchProControllerProfile
-  m_enabled: 0
+  m_enabled: 1
   nameUi: Meta Quest Touch Pro Controller Profile
   version: 0.0.1
   featureIdInternal: com.unity.openxr.feature.input.metaquestpro
