@@ -3820,7 +3820,6 @@ GameObject:
   - component: {fileID: 3564881930802793758}
   - component: {fileID: 6130070134726766015}
   - component: {fileID: 7995994810160517652}
-  - component: {fileID: 7995994810160517651}
   m_Layer: 0
   m_Name: SM_LPC_Vehicle_CarSaloonBase_01
   m_TagString: Untagged
@@ -3828,24 +3827,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &7995994810160517651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7995994810160517650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea8e951b23f34154f993205c246eb22c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPCCarController
-  maxSpeed: 15
-  acceleration: 8
-  turnSpeed: 120
-  waypointDistance: 4
-  roadTag: Road
-  loopRoute: 0
 --- !u!54 &7995994810160517652
 Rigidbody:
   m_ObjectHideFlags: 0
