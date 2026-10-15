@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class NPCCarController : MonoBehaviour
 {
+    //Car configuration within game, includes speed, accel, turn speed
     [Header("Car Config")]
     public float maxSpeed = 15f;
     public float acceleration = 8f;
