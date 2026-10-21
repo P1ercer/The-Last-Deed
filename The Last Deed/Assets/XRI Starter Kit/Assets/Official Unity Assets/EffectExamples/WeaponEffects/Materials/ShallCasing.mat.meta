@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 713f8d12f5dbfb640b7a4874212c2c08
+timeCreated: 1473769591
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/EffectExamples/WeaponEffects/Materials/ShallCasing.mat
+  uploadId: 731461

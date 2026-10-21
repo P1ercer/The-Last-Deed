@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fb0f4297b291a034bb4f9a9eada50640
+timeCreated: 1474449245
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/EffectExamples/WeaponEffects/Textures/BloodSplat2.mat
+  uploadId: 731461

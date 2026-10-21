@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 716f04dfda0546543adcd047a6e0ab7b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Features/Inventory/Inventory.prefab
+  uploadId: 731461

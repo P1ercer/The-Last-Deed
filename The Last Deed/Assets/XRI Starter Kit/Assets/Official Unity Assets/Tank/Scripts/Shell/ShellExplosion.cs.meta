@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: af9894b7bced3a04c870ade3c621f94e
+timeCreated: 1432719204
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/Tank/Scripts/Shell/ShellExplosion.cs
+  uploadId: 731461

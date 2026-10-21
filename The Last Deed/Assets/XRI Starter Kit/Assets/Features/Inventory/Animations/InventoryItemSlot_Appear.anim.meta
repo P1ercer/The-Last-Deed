@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0a801f78376361749bf396084e8c88ad
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Features/Inventory/Animations/InventoryItemSlot_Appear.anim
+  uploadId: 731461

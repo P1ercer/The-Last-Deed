@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: da564df3effbe3f4f9351e7ed2561dba
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/XRI/Scripts/KeyLockSystem/IKeychain.cs
+  uploadId: 731461

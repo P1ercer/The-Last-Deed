@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: aa86dff6b7a144dd9f3bf19a6d73249c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Scripts/Reusable/KeyboardEvents.cs
+  uploadId: 731461

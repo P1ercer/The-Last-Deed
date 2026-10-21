@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8b5e7dae87871704a88806edec0adc9c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/MiniGames/Targets/Target.prefab
+  uploadId: 731461

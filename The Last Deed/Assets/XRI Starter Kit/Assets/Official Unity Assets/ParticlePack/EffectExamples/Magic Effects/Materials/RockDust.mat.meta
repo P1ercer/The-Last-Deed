@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 7f74562c360a75d468cce8ccff3d595f
+timeCreated: 1475571583
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/ParticlePack/EffectExamples/Magic
+    Effects/Materials/RockDust.mat
+  uploadId: 731461

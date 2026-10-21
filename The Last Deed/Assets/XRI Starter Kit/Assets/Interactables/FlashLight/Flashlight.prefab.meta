@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4c9eac5adfb31644d9e83570dfcb935e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Interactables/FlashLight/Flashlight.prefab
+  uploadId: 731461

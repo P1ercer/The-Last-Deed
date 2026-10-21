@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f293a2dcc753a4a489fefe7f8f312d69
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/EffectExamples/FireExplosionEffects/Prefabs/WildFire.prefab
+  uploadId: 731461

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9bd9c5ce3784ad74bb0b89e1c094e78b
+timeCreated: 1473769591
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Interactables/Guns/Terraformer_Weapon_A/Art/Terraformer
+    Bullet.mat
+  uploadId: 731461

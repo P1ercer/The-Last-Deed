@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a98097390daaefa4ca694c5b5e08041d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/MiniGames/Forklift/Official Unity Assets/Warehouse/Prefabs/Props/PalletCollider.prefab
+  uploadId: 731461

@@ -950,7 +950,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Manipulation",
+                    "name": "Directional Manipulation",
                     "type": "Value",
                     "id": "93bd97c5-fd23-4853-8045-1b12324aa24e",
                     "expectedControlType": "Vector2",
@@ -975,6 +975,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Primary Button",
+                    "type": "Button",
+                    "id": "3c2ab564-43ab-464f-a963-73ceeee1ccd6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1026,17 +1035,6 @@
                     "name": "",
                     "id": "ebab6345-d4f7-4a42-94b3-12d4464de218",
                     "path": "<HoloLensHand>{LeftHand}/squeezePressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Select",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "87d9a1e7-704b-43bb-be2a-f2d8ecfde8b7",
-                    "path": "<KHRSimpleController>{LeftHand}/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1167,17 +1165,6 @@
                 },
                 {
                     "name": "",
-                    "id": "36eadd9a-281d-47fe-9d16-5870d6e00480",
-                    "path": "<KHRSimpleController>{LeftHand}/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UI Press",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "71d94579-1bf4-4034-ab9e-e7166842128f",
                     "path": "<XRController>{LeftHand}/{Trigger}",
                     "interactions": "",
@@ -1269,9 +1256,9 @@
                     "id": "5fe0ed53-b4d3-4cd8-b567-397a7d1e1c6a",
                     "path": "<XRController>{LeftHand}/{Primary2DAxis}",
                     "interactions": "",
-                    "processors": "StickDeadzone",
+                    "processors": "",
                     "groups": "",
-                    "action": "Manipulation",
+                    "action": "Directional Manipulation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1283,6 +1270,17 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "",
                     "action": "Translate Manipulation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8461273b-59e9-4ee1-bdb9-ef690ace3c83",
+                    "path": "<XRController>{LeftHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Button",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -2043,7 +2041,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Manipulation",
+                    "name": "Directional Manipulation",
                     "type": "Value",
                     "id": "b950a329-6492-4e29-b563-afc726f81e95",
                     "expectedControlType": "Vector2",
@@ -2068,6 +2066,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Primary Button",
+                    "type": "Button",
+                    "id": "3803a48b-76eb-424b-bdef-eb7b8a4213ee",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -2119,17 +2126,6 @@
                     "name": "",
                     "id": "82f232f1-6246-4d1e-aacc-a7ccc16c76d9",
                     "path": "<HoloLensHand>{RightHand}/squeezePressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Select",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "69580c32-8c9a-47d9-8b23-b53d760ca5da",
-                    "path": "<KHRSimpleController>{RightHand}/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -2260,17 +2256,6 @@
                 },
                 {
                     "name": "",
-                    "id": "a65008a0-f3b6-4060-b3a0-3eabaf0563bf",
-                    "path": "<KHRSimpleController>{RightHand}/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UI Press",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "5b4ef08d-9ddd-4f0a-8539-d1114d14d143",
                     "path": "<XRController>{RightHand}/{Trigger}",
                     "interactions": "",
@@ -2362,9 +2347,9 @@
                     "id": "c4b46d7d-8231-4672-83f9-75af565faf57",
                     "path": "<XRController>{RightHand}/{Primary2DAxis}",
                     "interactions": "",
-                    "processors": "StickDeadzone",
+                    "processors": "",
                     "groups": "",
-                    "action": "Manipulation",
+                    "action": "Directional Manipulation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -2376,6 +2361,17 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "",
                     "action": "Translate Manipulation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a616259-6213-458a-bcd1-293913acff95",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Button",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -2434,16 +2430,16 @@
                     "name": "Grab Move",
                     "type": "Button",
                     "id": "cfb29d37-3db0-4e5d-a73b-7d48a19e279e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Jump",
+                    "name": "Vehicle Move",
                     "type": "Button",
-                    "id": "01c7fda4-9c15-4167-8b87-58024f21d903",
-                    "expectedControlType": "Button",
+                    "id": "1231fa33-c268-425e-9f32-f2ee9d767ff2",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -2518,12 +2514,12 @@
                 },
                 {
                     "name": "",
-                    "id": "052b129b-fc83-4b33-a606-af10ad595c3e",
-                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "id": "286ca9d0-f256-4c7d-9155-347ce7eb7fd3",
+                    "path": "<XRController>{RightHand}/{Primary2DAxis}",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "Vehicle Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -2546,7 +2542,7 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "eba98c2e-6268-4233-bb88-946287bc753c",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -3008,15 +3004,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Drag Start Position",
-                    "type": "Value",
-                    "id": "defa5165-8d03-4449-bdde-c0643730a763",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Drag Current Position",
                     "type": "Value",
                     "id": "07fd51be-2a34-4531-939c-ff750fcf8e4d",
@@ -3092,7 +3079,7 @@
                     "name": "Spawn Object",
                     "type": "Button",
                     "id": "1415f3c5-fc5f-4f58-a044-4a69560151f2",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -3114,7 +3101,7 @@
                     "name": "One Modifier",
                     "id": "ccaca70d-b804-4cda-9dd1-ee9152fa6ec8",
                     "path": "OneModifier",
-                    "interactions": "Tap(duration=0.5)",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Tap Start Position",
@@ -3186,17 +3173,6 @@
                     "action": "Drag Current Position",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "f13815bd-33df-4670-9d5a-3295eafdda68",
-                    "path": "<TouchscreenGestureInputController>/dragStartPosition",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Drag Start Position",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -3355,8 +3331,8 @@
                 {
                     "name": "",
                     "id": "f0f27c2a-eef2-418a-986a-811bf690fd89",
-                    "path": "<TouchscreenGestureInputController>/tapStartPosition",
-                    "interactions": "",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Spawn Object",
@@ -3367,7 +3343,7 @@
                     "name": "One Modifier",
                     "id": "6f6c3123-8e3c-4f69-9ecc-2a605a5f8777",
                     "path": "OneModifier",
-                    "interactions": "Tap(duration=0.5)",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Spawn Object",

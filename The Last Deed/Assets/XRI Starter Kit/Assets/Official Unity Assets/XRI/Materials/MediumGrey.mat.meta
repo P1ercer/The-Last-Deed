@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dc1d2c50d7463b847ba30ff50e1959b3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/XRI/Materials/MediumGrey.mat
+  uploadId: 731461

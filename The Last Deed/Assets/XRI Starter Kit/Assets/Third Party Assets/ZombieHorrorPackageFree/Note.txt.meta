@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e58b125e206474ac6bd943ceac673b42
+timeCreated: 1532911859
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Third Party Assets/ZombieHorrorPackageFree/Note.txt
+  uploadId: 731461

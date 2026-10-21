@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 942f5c53fe25efe45af7f34b2ede0e5a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/MiniGames/Bowling/Art/BowlingBall 3.mat
+  uploadId: 731461

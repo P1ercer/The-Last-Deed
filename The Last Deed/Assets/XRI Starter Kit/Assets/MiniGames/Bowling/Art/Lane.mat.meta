@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 889e3b3e6618532469c819a96fcabc4a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/MiniGames/Bowling/Art/Lane.mat
+  uploadId: 731461

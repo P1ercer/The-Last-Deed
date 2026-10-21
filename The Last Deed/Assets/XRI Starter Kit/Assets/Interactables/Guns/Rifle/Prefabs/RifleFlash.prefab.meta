@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9192e08d2f3857b468cb7452ab4bbdb9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Interactables/Guns/Rifle/Prefabs/RifleFlash.prefab
+  uploadId: 731461

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 44056e94037237b4bb2f81f7a92f9dc2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Art/Materials/GlowingBlue.mat
+  uploadId: 731461

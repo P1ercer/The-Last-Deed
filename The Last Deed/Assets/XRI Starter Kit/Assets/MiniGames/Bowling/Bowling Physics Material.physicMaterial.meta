@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4c723b52b97f9314ea5ee62f6d197eb6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/MiniGames/Bowling/Bowling Physics Material.physicMaterial
+  uploadId: 731461

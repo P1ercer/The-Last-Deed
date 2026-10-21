@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 547f2e9db866947dabf6f55d8673905d
+timeCreated: 1476449956
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/EffectExamples/WeaponEffects/Models/Materials/No
+    Name.mat
+  uploadId: 731461

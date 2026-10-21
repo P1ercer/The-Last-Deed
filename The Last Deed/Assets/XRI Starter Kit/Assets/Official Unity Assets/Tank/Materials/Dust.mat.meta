@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 424be3af6ad117140887d3e652a89d24
+timeCreated: 1431360962
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/Tank/Materials/Dust.mat
+  uploadId: 731461

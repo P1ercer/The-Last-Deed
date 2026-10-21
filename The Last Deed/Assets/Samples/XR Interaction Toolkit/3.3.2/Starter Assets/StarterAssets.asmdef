@@ -5,8 +5,7 @@
         "Unity.InputSystem",
         "Unity.Mathematics",
         "Unity.XR.CoreUtils",
-        "Unity.XR.Interaction.Toolkit",
-        "Unity.XR.OpenXR"
+        "Unity.XR.Interaction.Toolkit"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -15,12 +14,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [
-        {
-            "name": "com.unity.xr.openxr",
-            "expression": "1.6.0",
-            "define": "OPENXR_1_6_OR_NEWER"
-        }
-    ],
+    "versionDefines": [],
     "noEngineReferences": false
 }

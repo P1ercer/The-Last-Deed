@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ac3261b8893833046aceff0947f03be6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 112000000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/XRI Starter Kit Lighting/LightingData.asset
+  uploadId: 731461

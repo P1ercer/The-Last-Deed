@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2e9717b86cbc62d4c91057a6a3e74884
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Interactables/Archery/Arrow.prefab
+  uploadId: 731461

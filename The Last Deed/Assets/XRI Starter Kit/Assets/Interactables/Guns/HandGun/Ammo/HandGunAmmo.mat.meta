@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 964337d701c3e8941a0119ee9423a2fa
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Interactables/Guns/HandGun/Ammo/HandGunAmmo.mat
+  uploadId: 731461

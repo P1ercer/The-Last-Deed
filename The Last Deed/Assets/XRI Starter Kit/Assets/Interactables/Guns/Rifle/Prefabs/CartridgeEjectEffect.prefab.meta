@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d4bb44e0d96319e42a338ba7d4781d19
+timeCreated: 1473770355
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Interactables/Guns/Rifle/Prefabs/CartridgeEjectEffect.prefab
+  uploadId: 731461

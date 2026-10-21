@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: eea49be48dcee48418391ba2d8b704ee
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Art/Materials/Transparent Controller.mat
+  uploadId: 731461

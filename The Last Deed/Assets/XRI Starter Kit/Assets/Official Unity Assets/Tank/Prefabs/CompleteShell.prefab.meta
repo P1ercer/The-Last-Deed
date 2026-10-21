@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 008ecb1b70bec724fa2cd34255b0d8f8
+timeCreated: 1426677629
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/Tank/Prefabs/CompleteShell.prefab
+  uploadId: 731461

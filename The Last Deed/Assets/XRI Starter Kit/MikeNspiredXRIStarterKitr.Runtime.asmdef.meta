@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 82b6b72b32ae4e941a293b51234dd1cd
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/MikeNspiredXRIStarterKitr.Runtime.asmdef
+  uploadId: 731461

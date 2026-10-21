@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0b1b6a2d22d96564f9037ae143ea84cf
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/EffectExamples/FireExplosionEffects/Materials/Lightning.mat
+  uploadId: 731461

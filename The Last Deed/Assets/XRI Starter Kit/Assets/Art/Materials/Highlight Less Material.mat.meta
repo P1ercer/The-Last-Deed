@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 033fce726d044524caf4574ec4299fed
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Art/Materials/Highlight Less Material.mat
+  uploadId: 731461

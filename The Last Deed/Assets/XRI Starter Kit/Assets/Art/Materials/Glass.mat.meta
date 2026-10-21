@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 37306a9abb094ae4b88ac72702d727a8
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Art/Materials/Glass.mat
+  uploadId: 731461

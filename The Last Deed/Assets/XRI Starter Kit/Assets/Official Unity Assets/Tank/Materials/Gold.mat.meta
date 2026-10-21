@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6221f2fbc7212d94cb9c069ee262d824
+timeCreated: 1427798063
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/Tank/Materials/Gold.mat
+  uploadId: 731461

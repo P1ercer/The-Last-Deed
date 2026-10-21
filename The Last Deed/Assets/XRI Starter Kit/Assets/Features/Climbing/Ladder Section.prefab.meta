@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 115f558b61f6d3348a811ab63f507f91
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Features/Climbing/Ladder Section.prefab
+  uploadId: 731461

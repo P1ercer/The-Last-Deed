@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5933bfd39d7a5b843a0ed821f85bca19
+timeCreated: 1522619008
+licenseType: Store
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Third Party Assets/QuickOutline/Readme.txt
+  uploadId: 731461

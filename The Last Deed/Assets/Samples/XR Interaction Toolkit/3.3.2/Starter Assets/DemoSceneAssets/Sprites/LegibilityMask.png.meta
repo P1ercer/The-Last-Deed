@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: a85d80c1edb5d2f458d42e79f78055b9
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/Samples/XR Interaction Toolkit/3.3.2/Starter Assets/DemoSceneAssets/Sprites/LegibilityMask.png
+  uploadId: 731461
 TextureImporter:
   internalIDToNameTable:
   - first:

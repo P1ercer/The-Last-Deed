@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f3004e0c0e5df074abcb3548fd812bfc
+timeCreated: 1478651609
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Interactables/Archery/Arrow/ArrowGlint.mat
+  uploadId: 731461

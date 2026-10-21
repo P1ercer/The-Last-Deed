@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f945baf4709095047a0c869056795a65
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Interactables/Guns/Terraformer_Weapon_A/Art/Terraformer_Weapon_A_Material.mat
+  uploadId: 731461

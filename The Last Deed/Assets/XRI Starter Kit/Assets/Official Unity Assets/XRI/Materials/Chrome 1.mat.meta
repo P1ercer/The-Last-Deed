@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8e18903f5224f0542bbdefd05d3db829
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/XRI/Materials/Chrome
+    1.mat
+  uploadId: 731461

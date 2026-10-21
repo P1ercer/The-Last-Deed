@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e23d795041a9cae4993fb191f49f3848
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Interactables/Grenades/FireGrenade.prefab
+  uploadId: 731461

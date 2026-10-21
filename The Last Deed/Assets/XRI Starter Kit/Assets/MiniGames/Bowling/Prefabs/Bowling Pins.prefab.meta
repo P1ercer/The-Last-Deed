@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5295152399c473c4aa747fd79c89e2c6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/MiniGames/Bowling/Prefabs/Bowling Pins.prefab
+  uploadId: 731461

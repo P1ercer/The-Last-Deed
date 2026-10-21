@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d8a541b3a621ae441893ec5aa1ad40ad
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Art/Materials/Teleport Red.mat
+  uploadId: 731461

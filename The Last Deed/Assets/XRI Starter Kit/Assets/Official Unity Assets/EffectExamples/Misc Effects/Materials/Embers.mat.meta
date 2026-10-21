@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 93c97da0a9a11174ab89575db81f7917
+timeCreated: 1471532950
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/EffectExamples/Misc
+    Effects/Materials/Embers.mat
+  uploadId: 731461

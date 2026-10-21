@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ac3ccc6061b5ac54b9c2fbfdfbae8a18
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/MiniGames/BottleBreak/Bottle Break Game.prefab
+  uploadId: 731461
