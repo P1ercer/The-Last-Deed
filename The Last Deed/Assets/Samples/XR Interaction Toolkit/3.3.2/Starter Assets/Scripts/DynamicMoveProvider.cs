@@ -1,9 +1,8 @@
 using Unity.XR.CoreUtils;
-using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement;
 
-namespace XR.Interaction.Toolkit.Samples
+namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
 {
     /// <summary>
     /// A version of continuous movement that automatically controls the frame of reference that
@@ -118,7 +117,7 @@ namespace XR.Interaction.Toolkit.Samples
             // Don't need to do anything if the total input is zero.
             // This is the same check as the base method.
             if (input == Vector2.zero)
-                return Vector3.zero;
+                return base.ComputeDesiredMove(input);
 
             // Initialize the Head Transform if necessary, getting the Camera from XR Origin
             if (m_HeadTransform == null)
