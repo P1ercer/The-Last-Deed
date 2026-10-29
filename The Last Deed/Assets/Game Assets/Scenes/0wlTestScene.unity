@@ -1239,7 +1239,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6334681852911358588, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
   m_PrefabInstance: {fileID: 799224008}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &475715924
+--- !u!114 &475715915
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1248,16 +1248,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 475715914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Oculus.VR::OVRGrabbable
-  m_allowOffhandGrab: 1
-  m_snapPosition: 0
-  m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
-  m_grabPoints:
-  - {fileID: 1429599836}
-  - {fileID: 809923441}
+  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.Grabbable
+  _transferOnSecondSelection: 0
+  _addNewPointsToFront: 0
+  _forwardElement: {fileID: 0}
+  _oneGrabTransformer: {fileID: 0}
+  _twoGrabTransformer: {fileID: 0}
+  _targetTransform: {fileID: 0}
+  _maxGrabPoints: 1
+  _rigidbody: {fileID: 475715917}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
+  _forceKinematicDisabled: 0
+--- !u!54 &475715917 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 6334681852911358577, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
+  m_PrefabInstance: {fileID: 799224008}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &478354407 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8702425413754196322, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
@@ -2401,15 +2410,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6334681852911358589, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 541.259
+      value: 544.725
       objectReference: {fileID: 0}
     - target: {fileID: 6334681852911358589, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.191
+      value: 0.863
       objectReference: {fileID: 0}
     - target: {fileID: 6334681852911358589, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 449.8695
+      value: 451.921
       objectReference: {fileID: 0}
     - target: {fileID: 6334681852911358589, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2453,13 +2462,8 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6334681852911358588, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 475715924}
+      addedObject: {fileID: 475715915}
   m_SourcePrefab: {fileID: 100100000, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
---- !u!65 &809923441 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 7834325461380276291, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
-  m_PrefabInstance: {fileID: 799224008}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &815427210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3959,11 +3963,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1813644329}
   m_SourcePrefab: {fileID: 100100000, guid: 43d80bcd752bc6e4986f6b18e863db9f, type: 3}
---- !u!65 &1429599836 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 6334681854263216228, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
-  m_PrefabInstance: {fileID: 799224008}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1446030871 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3400325201900728240, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
