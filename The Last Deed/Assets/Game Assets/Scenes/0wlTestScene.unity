@@ -1254,10 +1254,10 @@ MonoBehaviour:
   _transferOnSecondSelection: 0
   _addNewPointsToFront: 0
   _forwardElement: {fileID: 0}
-  _oneGrabTransformer: {fileID: 0}
-  _twoGrabTransformer: {fileID: 0}
-  _targetTransform: {fileID: 0}
-  _maxGrabPoints: 1
+  _oneGrabTransformer: {fileID: 799224011}
+  _twoGrabTransformer: {fileID: 799224011}
+  _targetTransform: {fileID: 799224009}
+  _maxGrabPoints: -1
   _rigidbody: {fileID: 475715917}
   _kinematicWhileSelected: 1
   _throwWhenUnselected: 1
@@ -2463,7 +2463,129 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6334681852911358588, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
       insertIndex: -1
       addedObject: {fileID: 475715915}
+    - targetCorrespondingSourceObject: {fileID: 6334681852911358588, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 799224011}
+    - targetCorrespondingSourceObject: {fileID: 6334681852911358588, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 799224010}
   m_SourcePrefab: {fileID: 100100000, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
+--- !u!4 &799224009 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6334681852911358589, guid: c4d486a38fe000346b95bdbffb892225, type: 3}
+  m_PrefabInstance: {fileID: 799224008}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &799224010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475715914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c1c6bba13c3f2047be1515fac286fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MikeNspiredXRIStarterKit.Runtime::MikeNspired.XRIStarterKit.DistanceGrabber
+  activationInput: {fileID: 0}
+  nearFarInteractor: {fileID: 0}
+  lineEffect: {fileID: 0}
+  launchAudio: {fileID: 0}
+  mainHandCollider: {fileID: 0}
+  EnableOnActive: {fileID: 0}
+  minDistanceToAllowGrab: 0.2
+  easyModeGrabNoWristFlick: 0
+  easyModeTimeTillGrab: 0.4
+  autoGrabIfGripping: 0
+  distanceToAutoGrab: 0.1
+  rayCastLength: 10
+  overlapSphereRadius: 1
+  distanceStartShrinkingOverlap: 2
+  overlapSphereRadiusMinSize: 0.1
+  rayCastMask:
+    serializedVersion: 2
+    m_Bits: 1
+  sphereCastRadius: 0.5
+  rayCastSearch: 1
+  sphereCastSearch: 1
+  showDebug: 0
+  debugSphereCast: {fileID: 0}
+  debugOverLapSphere: {fileID: 0}
+  dotProductCancel: 0.2
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  rotationMagnitudeToLaunch: 0.4
+  flightTimeMultiplier: 0.15
+  mainHandColliderSizeGrow: 0.2
+  colliderLargeExtraTime: 0.25
+  verticalGoalAddOn: 0.1
+  velocitySpeedWhenFinished: 1
+  minFlightTime: 0.25
+  distanceToStop: 0
+  dragTime: 0
+  dragHoldAmount: 0
+--- !u!114 &799224011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475715914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb7085c111fcb44493d57d4e336d3fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.GrabFreeTransformer
+  _positionConstraints:
+    ConstraintsAreRelative: 0
+    XAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 0
+        Max: 0
+    YAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 0
+        Max: 0
+    ZAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 0
+        Max: 0
+  _rotationConstraints:
+    XAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 0
+        Max: 0
+    YAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 0
+        Max: 0
+    ZAxis:
+      ConstrainAxis: 0
+      AxisRange:
+        Min: 0
+        Max: 0
+  _scaleConstraints:
+    ConstraintsAreRelative: 1
+    XAxis:
+      ConstrainAxis: 1
+      AxisRange:
+        Min: 1
+        Max: 1
+    YAxis:
+      ConstrainAxis: 1
+      AxisRange:
+        Min: 1
+        Max: 1
+    ZAxis:
+      ConstrainAxis: 1
+      AxisRange:
+        Min: 1
+        Max: 1
+  _resetScaleResponsivenessOnConstraintOvershoot: 0
 --- !u!1001 &815427210
 PrefabInstance:
   m_ObjectHideFlags: 0
