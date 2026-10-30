@@ -1,10 +1,9 @@
 using System;
-using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.AffordanceSystem.State;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
-namespace XR.Interaction.Toolkit.Samples
+namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
 {
     /// <summary>
     /// Helper component that binds an <see cref="XRInteractableAffordanceStateProvider"/> to a

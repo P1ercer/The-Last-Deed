@@ -9,10 +9,3 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 170222
-  packageName: XR Interaction ToolKit Starter Kit
-  packageVersion: 1.6.250208
-  assetPath: Assets/Samples/XR Interaction Toolkit/3.3.2/Starter Assets/Scripts/XRPokeFollowAffordance.cs
-  uploadId: 731461

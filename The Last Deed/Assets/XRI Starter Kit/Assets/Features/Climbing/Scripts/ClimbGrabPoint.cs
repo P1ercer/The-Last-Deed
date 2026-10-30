@@ -1,4 +1,5 @@
-﻿using XR.Interaction.Toolkit.Samples;
+﻿using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
+using UnityEngine.XR.Interaction.Toolkit.Samples;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
