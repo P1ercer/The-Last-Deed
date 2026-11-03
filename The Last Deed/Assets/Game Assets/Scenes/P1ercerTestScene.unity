@@ -11792,10 +11792,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2039631470330798431}
     - target: {fileID: 6125540499244869698, guid: 7d23e8a63f6fef94c9de4c830a59521b, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125540499244869698, guid: 7d23e8a63f6fef94c9de4c830a59521b, type: 3}
       propertyPath: m_Name
       value: StampACCEPT
       objectReference: {fileID: 0}
@@ -11870,18 +11866,6 @@ PrefabInstance:
     - target: {fileID: 6263974889776817961, guid: e3c724669728f894fa4619187aea982c, type: 3}
       propertyPath: m_Name
       value: StampDECLINE
-      objectReference: {fileID: 0}
-    - target: {fileID: 7409946352903076183, guid: e3c724669728f894fa4619187aea982c, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.59341
-      objectReference: {fileID: 0}
-    - target: {fileID: 7409946352903076183, guid: e3c724669728f894fa4619187aea982c, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.70141065
-      objectReference: {fileID: 0}
-    - target: {fileID: 7409946352903076183, guid: e3c724669728f894fa4619187aea982c, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.63969594
       objectReference: {fileID: 0}
     - target: {fileID: 7409946352903076183, guid: e3c724669728f894fa4619187aea982c, type: 3}
       propertyPath: m_LocalPosition.x
