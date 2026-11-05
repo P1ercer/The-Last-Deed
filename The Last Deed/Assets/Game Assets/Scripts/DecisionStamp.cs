@@ -1,8 +1,11 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using XRCommonUsages = UnityEngine.XR.CommonUsages;
+using XRInputDevice = UnityEngine.XR.InputDevice;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -24,8 +27,11 @@ namespace GameAssets.Scripts
 
         [Header("Hover Interaction")]
         [SerializeField] private XRBaseInteractable stampInteractable;
-        [SerializeField] private InputActionReference stampInput;
         [SerializeField] private float npcHoverDistance = 1.5f;
+
+        [Header("XR Controller Input")]
+        [SerializeField] private XRNode controllerNode = XRNode.RightHand;
+        [SerializeField] private bool useSecondaryButton;
 
         [Header("Gizmo")]
         [SerializeField] private bool showGizmoDuringPlay = true;
@@ -33,6 +39,8 @@ namespace GameAssets.Scripts
         [SerializeField] private float gizmoTextHeight = 0.25f;
         [SerializeField] private float gizmoTextSize = 18f;
         [SerializeField] private float gizmoRadius = 1.5f;
+
+        private bool wasDecisionButtonPressed;
 
         private void Awake()
         {
@@ -46,31 +54,39 @@ namespace GameAssets.Scripts
             }
         }
 
-        private void OnEnable()
+        private void Update()
         {
-            if (stampInput != null && stampInput.action != null)
-            {
-                stampInput.action.performed += OnStampInputPerformed;
-            }
-        }
+            XRInputDevice controller = InputDevices.GetDeviceAtXRNode(controllerNode);
 
-        private void OnDisable()
-        {
-            if (stampInput != null && stampInput.action != null)
+            if (!controller.isValid)
             {
-                stampInput.action.performed -= OnStampInputPerformed;
+                wasDecisionButtonPressed = false;
+                return;
             }
-        }
 
-        private void OnStampInputPerformed(InputAction.CallbackContext context)
-        {
-            if (stampInteractable == null ||
-                !stampInteractable.isHovered)
+            InputFeatureUsage<bool> buttonUsage = useSecondaryButton
+                ? XRCommonUsages.secondaryButton
+                : XRCommonUsages.primaryButton;
+
+            if (!controller.TryGetFeatureValue(buttonUsage, out bool isButtonPressed))
+            {
+                wasDecisionButtonPressed = false;
+                return;
+            }
+
+            bool wasButtonJustPressed =
+                isButtonPressed && !wasDecisionButtonPressed;
+
+            wasDecisionButtonPressed = isButtonPressed;
+
+            if (!wasButtonJustPressed)
             {
                 return;
             }
 
-            if (!IsNpcCloseEnough())
+            if (stampInteractable == null ||
+                !stampInteractable.isHovered ||
+                !IsNpcCloseEnough())
             {
                 return;
             }
