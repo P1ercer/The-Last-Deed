@@ -19,7 +19,8 @@ namespace GameAssets.Scripts
         [Header("Table Object")]
         [SerializeField] private GameObject decisionObjectPrefab;
         [SerializeField] private Transform tablePlacementPoint;
-        [SerializeField] private float objectPlacementDuration = 0.75f;
+        [SerializeField] private Collider tableSurfaceCollider;
+        [SerializeField] private float objectPlacementDuration = 1.25f;
 
         [Header("NPC Departure")]
         [SerializeField] private float departureDistance = 3f;
@@ -54,10 +55,19 @@ namespace GameAssets.Scripts
             {
                 Debug.LogError(
                     "NpcQueueManager requires an NPC prefab, Front Of Table, " +
-                    "Spawn Point, decision object prefab, and table placement point.");
+                    "Spawn Point, decision object prefab, and table placement point.",
+                    this);
 
                 enabled = false;
                 return;
+            }
+
+            if (tableSurfaceCollider == null)
+            {
+                Debug.LogWarning(
+                    "NpcQueueManager is using Table Placement Point as the " +
+                    "fallback tabletop surface.",
+                    this);
             }
 
             startingNpcCount = Mathf.Max(1, startingNpcCount);
@@ -89,7 +99,8 @@ namespace GameAssets.Scripts
             currentNpc.PlaceObjectOnTable(
                 decisionObjectPrefab,
                 tablePlacementPoint,
-                objectPlacementDuration);
+                tableSurfaceCollider,
+                objectPlacementDuration); // Added missing argument
         }
 
         private void SpawnNpc(int queueIndex)
@@ -199,16 +210,13 @@ namespace GameAssets.Scripts
         private void ResolveCurrentNpc()
         {
             NpcBehavior currentNpc = npcs[0];
-            GameObject decisionObject = currentNpc != null
-                ? currentNpc.PlacedObject
-                : null;
+
+            if (currentNpc != null)
+            {
+                currentNpc.TakePlacedObject();
+            }
 
             npcs.RemoveAt(0);
-
-            if (decisionObject != null)
-            {
-                Destroy(decisionObject, departureDuration);
-            }
 
             if (currentNpc != null)
             {

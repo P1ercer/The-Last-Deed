@@ -85,6 +85,7 @@ namespace GameAssets.Scripts
         public void PlaceObjectOnTable(
             GameObject objectPrefab,
             Transform tablePlacementPoint,
+            Collider tableSurfaceCollider,
             float placementDuration)
         {
             if (isPlacingObject ||
@@ -98,12 +99,14 @@ namespace GameAssets.Scripts
             StartCoroutine(PlaceObjectRoutine(
                 objectPrefab,
                 tablePlacementPoint,
+                tableSurfaceCollider,
                 Mathf.Max(0.01f, placementDuration)));
         }
 
         private IEnumerator PlaceObjectRoutine(
             GameObject objectPrefab,
             Transform tablePlacementPoint,
+            Collider tableSurfaceCollider,
             float placementDuration)
         {
             isPlacingObject = true;
@@ -117,10 +120,33 @@ namespace GameAssets.Scripts
                 spawnPoint.position,
                 spawnPoint.rotation);
 
+            Rigidbody objectRigidbody =
+                placedObject.GetComponentInChildren<Rigidbody>();
+
+            if (objectRigidbody != null)
+            {
+                objectRigidbody.isKinematic = true;
+                objectRigidbody.useGravity = false;
+                objectRigidbody.linearVelocity = Vector3.zero;
+                objectRigidbody.angularVelocity = Vector3.zero;
+            }
+
+            Collider[] objectColliders =
+                placedObject.GetComponentsInChildren<Collider>();
+
+            SetObjectCollidersEnabled(objectColliders, false);
+
+            Quaternion endRotation = tablePlacementPoint.rotation;
+
+            placedObject.transform.rotation = endRotation;
+
+            Vector3 endPosition = GetTableSurfacePosition(
+                placedObject,
+                tablePlacementPoint,
+                tableSurfaceCollider);
+
             Vector3 startPosition = placedObject.transform.position;
             Quaternion startRotation = placedObject.transform.rotation;
-            Vector3 endPosition = tablePlacementPoint.position;
-            Quaternion endRotation = tablePlacementPoint.rotation;
 
             float elapsedTime = 0f;
 
@@ -137,15 +163,20 @@ namespace GameAssets.Scripts
                 float progress = Mathf.Clamp01(
                     elapsedTime / placementDuration);
 
-                float arcOffset =
-                    Mathf.Sin(progress * Mathf.PI) * itemArcHeight;
+                float smoothProgress =
+                    Mathf.SmoothStep(0f, 1f, progress);
 
                 placedObject.transform.position =
-                    Vector3.Lerp(startPosition, endPosition, progress) +
-                    Vector3.up * arcOffset;
+                    Vector3.Lerp(
+                        startPosition,
+                        endPosition,
+                        smoothProgress);
 
                 placedObject.transform.rotation =
-                    Quaternion.Slerp(startRotation, endRotation, progress);
+                    Quaternion.Slerp(
+                        startRotation,
+                        endRotation,
+                        smoothProgress);
 
                 yield return null;
             }
@@ -160,10 +191,59 @@ namespace GameAssets.Scripts
                     tablePlacementPoint,
                     true);
 
+                SetObjectCollidersEnabled(objectColliders, true);
+
                 PlacedObject = placedObject;
             }
 
             isPlacingObject = false;
+        }
+
+        private Vector3 GetTableSurfacePosition(
+            GameObject placedObject,
+            Transform tablePlacementPoint,
+            Collider tableSurfaceCollider)
+        {
+            Vector3 position = tablePlacementPoint.position;
+
+            Collider objectCollider =
+                placedObject.GetComponentInChildren<Collider>();
+
+            if (objectCollider == null)
+            {
+                return position;
+            }
+
+            float paperHalfHeight =
+                objectCollider.bounds.extents.y;
+
+            if (tableSurfaceCollider != null)
+            {
+                position.y =
+                    tableSurfaceCollider.bounds.max.y +
+                    paperHalfHeight;
+            }
+            else
+            {
+                // When no tabletop collider is assigned, the placement
+                // point is treated as the tabletop surface.
+                position.y += paperHalfHeight;
+            }
+
+            return position;
+        }
+
+        private void SetObjectCollidersEnabled(
+            Collider[] colliders,
+            bool enabled)
+        {
+            foreach (Collider objectCollider in colliders)
+            {
+                if (objectCollider != null)
+                {
+                    objectCollider.enabled = enabled;
+                }
+            }
         }
 
         public void DepartAndDisappear(
@@ -214,6 +294,34 @@ namespace GameAssets.Scripts
 
             transform.position = endPosition;
             Destroy(gameObject);
+        }
+
+        public bool TakePlacedObject()
+        {
+            if (PlacedObject == null)
+            {
+                return false;
+            }
+
+            Transform holdPoint = itemHoldPoint != null
+                ? itemHoldPoint
+                : transform;
+
+            PlacedObject.transform.SetParent(holdPoint, false);
+            PlacedObject.transform.localPosition = Vector3.zero;
+            PlacedObject.transform.localRotation = Quaternion.identity;
+
+            Rigidbody objectRigidbody =
+                PlacedObject.GetComponentInChildren<Rigidbody>();
+
+            if (objectRigidbody != null)
+            {
+                objectRigidbody.isKinematic = true;
+                objectRigidbody.linearVelocity = Vector3.zero;
+                objectRigidbody.angularVelocity = Vector3.zero;
+            }
+
+            return true;
         }
     }
 }

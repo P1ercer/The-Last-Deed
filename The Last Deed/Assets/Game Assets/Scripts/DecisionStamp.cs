@@ -32,6 +32,9 @@ namespace GameAssets.Scripts
         private bool wasLeftTriggerPressed;
         private bool wasRightTriggerPressed;
 
+        [Header("Paper Interaction")]
+        [SerializeField] private float paperStampDistance = 0.25f;
+
         [Header("Gizmo")]
         [SerializeField] private bool showGizmoDuringPlay = true;
         [SerializeField] private bool showGizmoInEditMode = true;
@@ -67,8 +70,7 @@ namespace GameAssets.Scripts
             }
 
             if (stampInteractable == null ||
-                (!stampInteractable.isSelected && !stampInteractable.isHovered) ||
-                !IsNpcCloseEnough())
+                (!stampInteractable.isSelected && !stampInteractable.isHovered))
             {
                 return;
             }
@@ -129,6 +131,25 @@ namespace GameAssets.Scripts
             return distance <= npcHoverDistance;
         }
 
+        private bool IsPaperCloseEnough(GameObject paperObject)
+        {
+            if (paperObject == null)
+            {
+                return false;
+            }
+
+            Collider paperCollider =
+                paperObject.GetComponentInChildren<Collider>();
+
+            Vector3 closestPoint = paperCollider != null
+                ? paperCollider.ClosestPoint(transform.position)
+                : paperObject.transform.position;
+
+            return Vector3.Distance(
+                transform.position,
+                closestPoint) <= paperStampDistance;
+        }
+
         public void UseStamp()
         {
             if (queueManager == null)
@@ -140,15 +161,10 @@ namespace GameAssets.Scripts
                 return;
             }
 
-            if (!IsNpcCloseEnough())
-            {
-                return;
-            }
-
-            GameObject stampedObject =
+            GameObject paperObject =
                 queueManager.GetCurrentDecisionObject();
 
-            if (stampedObject == null)
+            if (!IsPaperCloseEnough(paperObject))
             {
                 return;
             }
@@ -159,7 +175,7 @@ namespace GameAssets.Scripts
 
             if (decisionCompleted)
             {
-                CreateDecisionLabel(stampedObject);
+                CreateDecisionLabel(paperObject);
             }
         }
 

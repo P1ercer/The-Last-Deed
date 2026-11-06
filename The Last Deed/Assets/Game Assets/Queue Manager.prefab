@@ -181,6 +181,7 @@ MonoBehaviour:
   queueDirection: {fileID: 5024395279428454689}
   decisionObjectPrefab: {fileID: 0}
   tablePlacementPoint: {fileID: 7584741501520766230}
+  tableSurfaceCollider: {fileID: 4374041924871722404}
   objectPlacementDuration: 0.75
   departureDistance: 3
   departureDuration: 2
@@ -300,14 +301,20 @@ PrefabInstance:
       addedObject: {fileID: 8396661272760625978}
     - targetCorrespondingSourceObject: {fileID: 228325136409695832, guid: 494d02764474ed3499ee08ee423e7e43, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 16209055588909996}
+      addedObject: {fileID: 8335553636560042618}
+    - targetCorrespondingSourceObject: {fileID: 228325136409695832, guid: 494d02764474ed3499ee08ee423e7e43, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4374041924871722404}
+    - targetCorrespondingSourceObject: {fileID: 228325136409695832, guid: 494d02764474ed3499ee08ee423e7e43, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2430576881605683500}
   m_SourcePrefab: {fileID: 100100000, guid: 494d02764474ed3499ee08ee423e7e43, type: 3}
 --- !u!1 &1736674947915272602 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 228325136409695832, guid: 494d02764474ed3499ee08ee423e7e43, type: 3}
   m_PrefabInstance: {fileID: 1959844470517221314}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &16209055588909996
+--- !u!64 &8335553636560042618
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -323,12 +330,47 @@ MeshCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5724518027108951127, guid: cc9c67610eabd0f4bb292c8abaf23ecb, type: 3}
+--- !u!65 &4374041924871722404
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736674947915272602}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.044708267, y: 0.018850548, z: 0.0005175153}
+  m_Center: {x: 0.005382041, y: 0.000735269, z: 0.016851494}
+--- !u!114 &2430576881605683500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736674947915272602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244f2ad1b8e8b094bacb0340a824bf9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameAssets.Scripts.PaperDropOffZone
+  boundaryPadding: 1.21
+  edgePushDistance: 0.1
 --- !u!1 &3964960398431389088 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3185340505530548834, guid: 494d02764474ed3499ee08ee423e7e43, type: 3}
@@ -353,7 +395,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8030467623475097466, guid: cc9c67610eabd0f4bb292c8abaf23ecb, type: 3}
 --- !u!4 &5635965221001224135 stripped

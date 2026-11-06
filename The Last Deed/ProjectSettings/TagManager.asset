@@ -33,6 +33,7 @@ TagManager:
   - QDSUIToggleThumbnail
   - Road
   - projectile
+  - paper
   layers:
   - Default
   - TransparentFX
