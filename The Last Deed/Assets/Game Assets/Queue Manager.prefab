@@ -86,13 +86,44 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5359455542701370035}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.99807006, z: -0, w: -0.06209863}
+  m_LocalRotation: {x: -0, y: 0.99999046, z: -0, w: -0.0043757595}
   m_LocalPosition: {x: -4.01, y: 1.01, z: -3.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2221736952265670633}
-  m_LocalEulerAnglesHint: {x: 0, y: 187.121, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180.501, z: 0}
+--- !u!1 &5402759499734497276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7584741501520766230}
+  m_Layer: 0
+  m_Name: TableTop
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7584741501520766230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5402759499734497276}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.044, y: 0.855, z: -2.72}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2221736952265670633}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6092505394438388630
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +158,7 @@ Transform:
   - {fileID: 5024395279428454689}
   - {fileID: 3030342832100623905}
   - {fileID: 5881280789939283691}
+  - {fileID: 7584741501520766230}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1401570975418356371
@@ -147,6 +179,11 @@ MonoBehaviour:
   frontOfTable: {fileID: 3030342832100623905}
   spawnPoint: {fileID: 5881280789939283691}
   queueDirection: {fileID: 5024395279428454689}
+  decisionObjectPrefab: {fileID: 0}
+  tablePlacementPoint: {fileID: 7584741501520766230}
+  objectPlacementDuration: 0.75
+  departureDistance: 3
+  departureDuration: 2
   decisionCooldown: 0.25
   onNpcAccepted:
     m_PersistentCalls:

@@ -16,6 +16,15 @@ namespace GameAssets.Scripts
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private Transform queueDirection;
 
+        [Header("Table Object")]
+        [SerializeField] private GameObject decisionObjectPrefab;
+        [SerializeField] private Transform tablePlacementPoint;
+        [SerializeField] private float objectPlacementDuration = 0.75f;
+
+        [Header("NPC Departure")]
+        [SerializeField] private float departureDistance = 3f;
+        [SerializeField] private float departureDuration = 2f;
+
         [Header("Decision Settings")]
         [SerializeField] private float decisionCooldown = 0.25f;
 
@@ -30,7 +39,8 @@ namespace GameAssets.Scripts
         [SerializeField] private float queueDirectionArrowHeadLength = 0.4f;
         [SerializeField] private float queueDirectionArrowHeadWidth = 0.2f;
 
-        private readonly List<NpcBehavior> npcs = new List<NpcBehavior>();
+        private readonly List<NpcBehavior> npcs =
+            new List<NpcBehavior>();
 
         private float nextDecisionTime;
 
@@ -38,10 +48,13 @@ namespace GameAssets.Scripts
         {
             if (npcPrefab == null ||
                 frontOfTable == null ||
-                spawnPoint == null)
+                spawnPoint == null ||
+                decisionObjectPrefab == null ||
+                tablePlacementPoint == null)
             {
                 Debug.LogError(
-                    "NpcQueueManager requires an NPC prefab, Front Of Table, and Spawn Point.");
+                    "NpcQueueManager requires an NPC prefab, Front Of Table, " +
+                    "Spawn Point, decision object prefab, and table placement point.");
 
                 enabled = false;
                 return;
@@ -54,6 +67,29 @@ namespace GameAssets.Scripts
             {
                 SpawnNpc(i);
             }
+        }
+
+        private void Update()
+        {
+            if (npcs.Count == 0)
+            {
+                return;
+            }
+
+            NpcBehavior currentNpc = npcs[0];
+
+            if (currentNpc == null ||
+                currentNpc.IsMoving ||
+                currentNpc.IsPlacingObject ||
+                currentNpc.PlacedObject != null)
+            {
+                return;
+            }
+
+            currentNpc.PlaceObjectOnTable(
+                decisionObjectPrefab,
+                tablePlacementPoint,
+                objectPlacementDuration);
         }
 
         private void SpawnNpc(int queueIndex)
@@ -89,6 +125,11 @@ namespace GameAssets.Scripts
                 ? queueDirection
                 : frontOfTable;
 
+            if (directionTransform == null)
+            {
+                return Vector3.forward;
+            }
+
             Vector3 direction = directionTransform.forward;
             direction.y = 0f;
 
@@ -108,37 +149,45 @@ namespace GameAssets.Scripts
             {
                 if (npcs[i] != null)
                 {
-                    npcs[i].MoveTo(GetQueuePosition(i));
+                    npcs[i].MoveTo(GetQueuePosition(i));    
                     npcs[i].FaceDirection(facingDirection);
                 }
             }
         }
 
-        public void AcceptNpc()
+        public bool AcceptNpc()
         {
             if (!CanMakeDecision())
             {
-                return;
+                return false;
             }
 
             ResolveCurrentNpc();
             onNpcAccepted?.Invoke();
+
+            return true;
         }
 
-        public void DeclineNpc()
+        public bool DeclineNpc()
         {
             if (!CanMakeDecision())
             {
-                return;
+                return false;
             }
 
             ResolveCurrentNpc();
             onNpcDeclined?.Invoke();
+
+            return true;
         }
 
         private bool CanMakeDecision()
         {
-            if (npcs.Count == 0 || Time.time < nextDecisionTime)
+            if (npcs.Count == 0 ||
+                npcs[0] == null ||
+                npcs[0].PlacedObject == null ||
+                npcs[0].IsPlacingObject ||
+                Time.time < nextDecisionTime)
             {
                 return false;
             }
@@ -150,11 +199,23 @@ namespace GameAssets.Scripts
         private void ResolveCurrentNpc()
         {
             NpcBehavior currentNpc = npcs[0];
+            GameObject decisionObject = currentNpc != null
+                ? currentNpc.PlacedObject
+                : null;
+
             npcs.RemoveAt(0);
+
+            if (decisionObject != null)
+            {
+                Destroy(decisionObject, departureDuration);
+            }
 
             if (currentNpc != null)
             {
-                Destroy(currentNpc.gameObject);
+                currentNpc.DepartAndDisappear(
+                    -GetQueueDirection(),
+                    departureDistance,
+                    departureDuration);
             }
 
             SpawnNpc(npcs.Count);
@@ -171,6 +232,18 @@ namespace GameAssets.Scripts
             return npcs[0];
         }
 
+        public GameObject GetCurrentDecisionObject()
+        {
+            NpcBehavior currentNpc = GetCurrentNpc();
+
+            if (currentNpc == null)
+            {
+                return null;
+            }
+
+            return currentNpc.PlacedObject;
+        }
+
         private void OnDrawGizmos()
         {
             if (!showQueueDirectionGizmo)
@@ -178,24 +251,11 @@ namespace GameAssets.Scripts
                 return;
             }
 
-            Transform directionTransform = queueDirection != null
-                ? queueDirection
-                : transform;
-
             Vector3 arrowStart = frontOfTable != null
                 ? frontOfTable.position
                 : transform.position;
 
-            Vector3 direction = directionTransform.forward;
-            direction.y = 0f;
-
-            if (direction.sqrMagnitude <= 0.001f)
-            {
-                return;
-            }
-
-            direction.Normalize();
-
+            Vector3 direction = GetQueueDirection();
             Vector3 sideDirection =
                 Vector3.Cross(Vector3.up, direction).normalized;
 

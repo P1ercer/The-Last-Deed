@@ -1,11 +1,8 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using XRCommonUsages = UnityEngine.XR.CommonUsages;
-using XRInputDevice = UnityEngine.XR.InputDevice;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -30,8 +27,10 @@ namespace GameAssets.Scripts
         [SerializeField] private float npcHoverDistance = 1.5f;
 
         [Header("XR Controller Input")]
-        [SerializeField] private XRNode controllerNode = XRNode.RightHand;
-        [SerializeField] private bool useSecondaryButton;
+        [SerializeField, Range(0f, 1f)] private float triggerPressThreshold = 0.75f;
+
+        private bool wasLeftTriggerPressed;
+        private bool wasRightTriggerPressed;
 
         [Header("Gizmo")]
         [SerializeField] private bool showGizmoDuringPlay = true;
@@ -39,8 +38,6 @@ namespace GameAssets.Scripts
         [SerializeField] private float gizmoTextHeight = 0.25f;
         [SerializeField] private float gizmoTextSize = 18f;
         [SerializeField] private float gizmoRadius = 1.5f;
-
-        private bool wasDecisionButtonPressed;
 
         private void Awake()
         {
@@ -54,44 +51,61 @@ namespace GameAssets.Scripts
             }
         }
 
-        private void Update()
+        private void LateUpdate()
         {
-            XRInputDevice controller = InputDevices.GetDeviceAtXRNode(controllerNode);
+            bool leftTriggerJustPressed = CheckControllerTrigger(
+                XRNode.LeftHand,
+                ref wasLeftTriggerPressed);
 
-            if (!controller.isValid)
-            {
-                wasDecisionButtonPressed = false;
-                return;
-            }
+            bool rightTriggerJustPressed = CheckControllerTrigger(
+                XRNode.RightHand,
+                ref wasRightTriggerPressed);
 
-            InputFeatureUsage<bool> buttonUsage = useSecondaryButton
-                ? XRCommonUsages.secondaryButton
-                : XRCommonUsages.primaryButton;
-
-            if (!controller.TryGetFeatureValue(buttonUsage, out bool isButtonPressed))
-            {
-                wasDecisionButtonPressed = false;
-                return;
-            }
-
-            bool wasButtonJustPressed =
-                isButtonPressed && !wasDecisionButtonPressed;
-
-            wasDecisionButtonPressed = isButtonPressed;
-
-            if (!wasButtonJustPressed)
+            if (!leftTriggerJustPressed && !rightTriggerJustPressed)
             {
                 return;
             }
 
             if (stampInteractable == null ||
-                !stampInteractable.isHovered ||
+                (!stampInteractable.isSelected && !stampInteractable.isHovered) ||
                 !IsNpcCloseEnough())
             {
                 return;
             }
 
             UseStamp();
+        }
+
+        private bool CheckControllerTrigger(
+            XRNode controllerNode,
+            ref bool wasTriggerPressed)
+        {
+            InputDevice controller =
+                InputDevices.GetDeviceAtXRNode(controllerNode);
+
+            if (!controller.isValid)
+            {
+                wasTriggerPressed = false;
+                return false;
+            }
+
+            if (!controller.TryGetFeatureValue(
+                    CommonUsages.trigger,
+                    out float triggerValue))
+            {
+                wasTriggerPressed = false;
+                return false;
+            }
+
+            bool isTriggerPressed =
+                triggerValue >= triggerPressThreshold;
+
+            bool wasTriggerJustPressed =
+                isTriggerPressed && !wasTriggerPressed;
+
+            wasTriggerPressed = isTriggerPressed;
+
+            return wasTriggerJustPressed;
         }
 
         private bool IsNpcCloseEnough()
@@ -131,14 +145,59 @@ namespace GameAssets.Scripts
                 return;
             }
 
-            if (decision == Decision.Accept)
+            GameObject stampedObject =
+                queueManager.GetCurrentDecisionObject();
+
+            if (stampedObject == null)
             {
-                queueManager.AcceptNpc();
+                return;
+            }
+
+            bool decisionCompleted = decision == Decision.Accept
+                ? queueManager.AcceptNpc()
+                : queueManager.DeclineNpc();
+
+            if (decisionCompleted)
+            {
+                CreateDecisionLabel(stampedObject);
+            }
+        }
+
+        private void CreateDecisionLabel(GameObject stampedObject)
+        {
+            GameObject labelObject = new GameObject("Decision Label");
+
+            labelObject.transform.position = transform.position;
+            labelObject.transform.SetParent(stampedObject.transform, true);
+
+            Camera playerCamera = Camera.main;
+
+            if (playerCamera != null)
+            {
+                labelObject.transform.rotation =
+                    Quaternion.LookRotation(
+                        labelObject.transform.position -
+                        playerCamera.transform.position);
             }
             else
             {
-                queueManager.DeclineNpc();
+                labelObject.transform.rotation = transform.rotation;
             }
+
+            TextMesh textMesh = labelObject.AddComponent<TextMesh>();
+
+            textMesh.text = decision == Decision.Accept
+                ? "ACCEPT"
+                : "DECLINED";
+
+            textMesh.color = decision == Decision.Accept
+                ? Color.green
+                : Color.red;
+
+            textMesh.anchor = TextAnchor.MiddleCenter;
+            textMesh.alignment = TextAlignment.Center;
+            textMesh.fontSize = 48;
+            textMesh.characterSize = 0.01f;
         }
 
         private void FindStampInteractable()

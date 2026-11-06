@@ -106,8 +106,7 @@ MonoBehaviour:
   decision: 0
   stampInteractable: {fileID: 8199402540390390631}
   npcHoverDistance: 1.5
-  controllerNode: 5
-  useSecondaryButton: 0
+  triggerPressThreshold: 0.75
   showGizmoDuringPlay: 1
   showGizmoInEditMode: 1
   gizmoTextHeight: 0.25
