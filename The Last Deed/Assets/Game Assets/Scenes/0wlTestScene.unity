@@ -2148,6 +2148,10 @@ PrefabInstance:
       propertyPath: infiniteAmmo
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2271206862250411914, guid: 29628f1c9a4842b47a50ccef31ea3809, type: 3}
+      propertyPath: automaticFiring
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2271206862250411953, guid: 29628f1c9a4842b47a50ccef31ea3809, type: 3}
       propertyPath: m_Name
       value: HandGun
