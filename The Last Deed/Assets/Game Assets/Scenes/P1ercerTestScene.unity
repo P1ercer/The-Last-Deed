@@ -9606,11 +9606,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eeb20c070914254b90c9d79c08ef5e4, type: 3}
---- !u!65 &1298133682 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 4374041924871722404, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
-  m_PrefabInstance: {fileID: 2039631470330798430}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1307014060
 Mesh:
   m_ObjectHideFlags: 0
@@ -14702,10 +14697,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 401917149}
     - target: {fileID: 1401570975418356371, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
-      propertyPath: tableSurfaceCollider
-      value: 
-      objectReference: {fileID: 1298133682}
-    - target: {fileID: 1401570975418356371, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
       propertyPath: onNpcAccepted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6512568487535506108}
@@ -14752,10 +14743,6 @@ PrefabInstance:
     - target: {fileID: 2221736952265670633, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430576881605683500, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
-      propertyPath: boundaryPadding
-      value: 1.21
       objectReference: {fileID: 0}
     - target: {fileID: 6092505394438388630, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
       propertyPath: m_Name
