@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1446550361120078667
+--- !u!1 &1957398485466181853
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8925164339051420936}
-  - component: {fileID: 5356341513927404056}
+  - component: {fileID: 1281094786994438569}
+  - component: {fileID: 2131705184039158373}
   m_Layer: 0
-  m_Name: StampCOL
+  m_Name: StampGrabbable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8925164339051420936
+--- !u!4 &1281094786994438569
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446550361120078667}
+  m_GameObject: {fileID: 1957398485466181853}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071069, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0.000089970534, z: 0.001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0005, y: 0, z: 0.0078}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2442654812129439731}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &5356341513927404056
-MeshCollider:
+--- !u!65 &2131705184039158373
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446550361120078667}
+  m_GameObject: {fileID: 1957398485466181853}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -48,12 +48,64 @@ MeshCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 1
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1793090875079514752, guid: 22ce9ccd228ae2e4ba7cb350290c1a81, type: 3}
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.014436676, y: 0.014434687, z: 0.0036915431}
+  m_Center: {x: 0.0004973543, y: -0.000075037446, z: 0.0036226653}
+--- !u!1 &4578019086964871051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1903119871285646386}
+  - component: {fileID: 7504081109399065370}
+  m_Layer: 0
+  m_Name: StampBase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1903119871285646386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4578019086964871051}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0005, y: 0, z: -0.00703}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2442654812129439731}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7504081109399065370
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4578019086964871051}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.014950162, y: 0.02876179, z: 0.004597217}
+  m_Center: {x: 0.00052289275, y: 0.000004624616, z: 0.003169828}
 --- !u!1 &6263974889776817961
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,8 +158,12 @@ MonoBehaviour:
   decision: 1
   stampInteractable: {fileID: 706356003878751782}
   npcHoverDistance: 1.5
-  controllerNode: 5
-  useSecondaryButton: 1
+  triggerPressThreshold: 0.75
+  grabPoint: {fileID: 1281094786994438569}
+  stampPoint: {fileID: 1903119871285646386}
+  paperStampDistance: 0.25
+  decisionImageCanvasPrefab: {fileID: 8118964178812824613, guid: 63fd2c75732d327479fe30506d0ce6b6, type: 3}
+  imageSurfaceOffset: 0.001
   showGizmoDuringPlay: 1
   showGizmoInEditMode: 1
   gizmoTextHeight: 0.25
@@ -176,7 +232,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 2131705184039158373}
+  - {fileID: 0}
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -237,8 +295,8 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
-  m_AttachTransform: {fileID: 0}
-  m_SecondaryAttachTransform: {fileID: 0}
+  m_AttachTransform: {fileID: 1281094786994438569}
+  m_SecondaryAttachTransform: {fileID: 1281094786994438569}
   m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
@@ -361,41 +419,14 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 22ce9ccd228ae2e4ba7cb350290c1a81, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8925164339051420936}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 22ce9ccd228ae2e4ba7cb350290c1a81, type: 3}
+      addedObject: {fileID: 1281094786994438569}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 22ce9ccd228ae2e4ba7cb350290c1a81, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7432079546512079052}
+      addedObject: {fileID: 1903119871285646386}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22ce9ccd228ae2e4ba7cb350290c1a81, type: 3}
 --- !u!4 &2442654812129439731 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 22ce9ccd228ae2e4ba7cb350290c1a81, type: 3}
   m_PrefabInstance: {fileID: 2768786750986962968}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3075357321936762185 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 22ce9ccd228ae2e4ba7cb350290c1a81, type: 3}
-  m_PrefabInstance: {fileID: 2768786750986962968}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &7432079546512079052
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3075357321936762185}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 1
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1793090875079514752, guid: 22ce9ccd228ae2e4ba7cb350290c1a81, type: 3}

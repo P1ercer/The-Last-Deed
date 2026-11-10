@@ -1,327 +1,452 @@
 using System.Collections;
 using UnityEngine;
 
-namespace GameAssets.Scripts
+public class NpcBehavior : MonoBehaviour
 {
-    public class NpcBehavior : MonoBehaviour
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float stoppingDistance = 0.05f;
+
+    [Header("Object Placement")]
+    [SerializeField] private Transform itemHoldPoint;
+    [SerializeField] private float itemArcHeight = 0.25f;
+
+    private Vector3 destination;
+    private Vector3 finalFacingDirection;
+    private bool isMoving;
+    private bool hasFinalFacingDirection;
+    private bool isPlacingObject;
+    private bool isHoldingObject;
+
+    public bool IsMoving => isMoving;
+    public bool IsPlacingObject => isPlacingObject;
+    public GameObject PlacedObject { get; private set; }
+
+    private void Update()
     {
-        [Header("Movement")]
-        [SerializeField] private float moveSpeed = 2f;
-        [SerializeField] private float stoppingDistance = 0.05f;
-
-        [Header("Object Placement")]
-        [SerializeField] private Transform itemHoldPoint;
-        [SerializeField] private float itemArcHeight = 0.25f;
-
-        private Vector3 destination;
-        private Vector3 finalFacingDirection;
-        private bool isMoving;
-        private bool hasFinalFacingDirection;
-        private bool isPlacingObject;
-
-        public bool IsMoving => isMoving;
-        public bool IsPlacingObject => isPlacingObject;
-        public GameObject PlacedObject { get; private set; }
-
-        private void Update()
+        if (!isMoving)
         {
-            if (!isMoving)
-            {
-                return;
-            }
-
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                destination,
-                moveSpeed * Time.deltaTime);
-
-            Vector3 movementDirection = destination - transform.position;
-            movementDirection.y = 0f;
-
-            if (movementDirection.sqrMagnitude > 0.001f)
-            {
-                transform.forward = Vector3.Lerp(
-                    transform.forward,
-                    movementDirection.normalized,
-                    moveSpeed * Time.deltaTime * 5f);
-            }
-
-            if (Vector3.Distance(transform.position, destination) <= stoppingDistance)
-            {
-                transform.position = destination;
-                isMoving = false;
-
-                if (hasFinalFacingDirection)
-                {
-                    transform.forward = finalFacingDirection;
-                }
-            }
+            return;
         }
 
-        public void MoveTo(Vector3 targetPosition)
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            destination,
+            moveSpeed * Time.deltaTime);
+
+        Vector3 movementDirection = destination - transform.position;
+        movementDirection.y = 0f;
+
+        if (movementDirection.sqrMagnitude > 0.001f)
         {
-            destination = targetPosition;
-            isMoving = true;
+            transform.forward = Vector3.Lerp(
+                transform.forward,
+                movementDirection.normalized,
+                moveSpeed * Time.deltaTime * 5f);
         }
 
-        public void FaceDirection(Vector3 direction)
+        if (Vector3.Distance(transform.position, destination) <= stoppingDistance)
         {
-            direction.y = 0f;
+            transform.position = destination;
+            isMoving = false;
 
-            if (direction.sqrMagnitude <= 0.001f)
-            {
-                return;
-            }
-
-            finalFacingDirection = direction.normalized;
-            hasFinalFacingDirection = true;
-
-            if (!isMoving)
+            if (hasFinalFacingDirection)
             {
                 transform.forward = finalFacingDirection;
             }
         }
+    }
 
-        public void PlaceObjectOnTable(
-            GameObject objectPrefab,
-            Transform tablePlacementPoint,
-            Collider tableSurfaceCollider,
-            float placementDuration)
+    public void MoveTo(Vector3 targetPosition)
+    {
+        destination = targetPosition;
+        isMoving = true;
+    }
+
+    public void FaceDirection(Vector3 direction)
+    {
+        direction.y = 0f;
+
+        if (direction.sqrMagnitude <= 0.001f)
         {
-            if (isPlacingObject ||
-                PlacedObject != null ||
-                objectPrefab == null ||
-                tablePlacementPoint == null)
-            {
-                return;
-            }
-
-            StartCoroutine(PlaceObjectRoutine(
-                objectPrefab,
-                tablePlacementPoint,
-                tableSurfaceCollider,
-                Mathf.Max(0.01f, placementDuration)));
+            return;
         }
 
-        private IEnumerator PlaceObjectRoutine(
-            GameObject objectPrefab,
-            Transform tablePlacementPoint,
-            Collider tableSurfaceCollider,
-            float placementDuration)
+        finalFacingDirection = direction.normalized;
+        hasFinalFacingDirection = true;
+
+        if (!isMoving)
         {
-            isPlacingObject = true;
+            transform.forward = finalFacingDirection;
+        }
+    }
 
-            Transform spawnPoint = itemHoldPoint != null
-                ? itemHoldPoint
-                : transform;
+    public void PlaceObjectOnTable(
+        GameObject objectPrefab,
+        Transform tablePlacementPoint,
+        Collider tableSurfaceCollider,
+        float placementDuration)
+    {
+        if (isPlacingObject ||
+            PlacedObject != null ||
+            objectPrefab == null ||
+            tablePlacementPoint == null)
+        {
+            return;
+        }
 
-            GameObject placedObject = Instantiate(
-                objectPrefab,
-                spawnPoint.position,
-                spawnPoint.rotation);
+        StartCoroutine(PlaceObjectRoutine(
+            objectPrefab,
+            tablePlacementPoint,
+            tableSurfaceCollider,
+            Mathf.Max(0.01f, placementDuration)));
+    }
 
-            Rigidbody objectRigidbody =
-                placedObject.GetComponentInChildren<Rigidbody>();
+    private IEnumerator PlaceObjectRoutine(
+        GameObject objectPrefab,
+        Transform tablePlacementPoint,
+        Collider tableSurfaceCollider,
+        float placementDuration)
+    {
+        isPlacingObject = true;
 
-            if (objectRigidbody != null)
+        Transform spawnPoint = itemHoldPoint != null
+            ? itemHoldPoint
+            : transform;
+
+        GameObject placedObject = Instantiate(
+            objectPrefab,
+            spawnPoint.position,
+            spawnPoint.rotation);
+
+        Rigidbody objectRigidbody =
+            placedObject.GetComponentInChildren<Rigidbody>();
+
+        if (objectRigidbody != null)
+        {
+            objectRigidbody.isKinematic = true;
+            objectRigidbody.useGravity = false;
+            objectRigidbody.linearVelocity = Vector3.zero;
+            objectRigidbody.angularVelocity = Vector3.zero;
+        }
+
+        Collider[] objectColliders =
+            placedObject.GetComponentsInChildren<Collider>();
+
+        SetObjectCollidersEnabled(objectColliders, false);
+
+        Quaternion endRotation = tablePlacementPoint.rotation;
+
+        placedObject.transform.rotation = endRotation;
+
+        Vector3 endPosition = GetTableSurfacePosition(
+            placedObject,
+            tablePlacementPoint,
+            tableSurfaceCollider);
+
+        Vector3 startPosition = placedObject.transform.position;
+        Quaternion startRotation = placedObject.transform.rotation;
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < placementDuration)
+        {
+            if (placedObject == null)
             {
-                objectRigidbody.isKinematic = true;
-                objectRigidbody.useGravity = false;
-                objectRigidbody.linearVelocity = Vector3.zero;
-                objectRigidbody.angularVelocity = Vector3.zero;
+                isPlacingObject = false;
+                yield break;
             }
 
-            Collider[] objectColliders =
-                placedObject.GetComponentsInChildren<Collider>();
+            elapsedTime += Time.deltaTime;
 
-            SetObjectCollidersEnabled(objectColliders, false);
+            float progress = Mathf.Clamp01(
+                elapsedTime / placementDuration);
 
-            Quaternion endRotation = tablePlacementPoint.rotation;
+            float smoothProgress =
+                Mathf.SmoothStep(0f, 1f, progress);
 
-            placedObject.transform.rotation = endRotation;
-
-            Vector3 endPosition = GetTableSurfacePosition(
-                placedObject,
-                tablePlacementPoint,
-                tableSurfaceCollider);
-
-            Vector3 startPosition = placedObject.transform.position;
-            Quaternion startRotation = placedObject.transform.rotation;
-
-            float elapsedTime = 0f;
-
-            while (elapsedTime < placementDuration)
-            {
-                if (placedObject == null)
-                {
-                    isPlacingObject = false;
-                    yield break;
-                }
-
-                elapsedTime += Time.deltaTime;
-
-                float progress = Mathf.Clamp01(
-                    elapsedTime / placementDuration);
-
-                float smoothProgress =
-                    Mathf.SmoothStep(0f, 1f, progress);
-
-                placedObject.transform.position =
-                    Vector3.Lerp(
-                        startPosition,
-                        endPosition,
-                        smoothProgress);
-
-                placedObject.transform.rotation =
-                    Quaternion.Slerp(
-                        startRotation,
-                        endRotation,
-                        smoothProgress);
-
-                yield return null;
-            }
-
-            if (placedObject != null)
-            {
-                placedObject.transform.SetPositionAndRotation(
+            placedObject.transform.position =
+                Vector3.Lerp(
+                    startPosition,
                     endPosition,
-                    endRotation);
+                    smoothProgress);
 
-                placedObject.transform.SetParent(
-                    tablePlacementPoint,
-                    true);
+            placedObject.transform.rotation =
+                Quaternion.Slerp(
+                    startRotation,
+                    endRotation,
+                    smoothProgress);
 
-                SetObjectCollidersEnabled(objectColliders, true);
-
-                PlacedObject = placedObject;
-            }
-
-            isPlacingObject = false;
+            yield return null;
         }
 
-        private Vector3 GetTableSurfacePosition(
-            GameObject placedObject,
-            Transform tablePlacementPoint,
-            Collider tableSurfaceCollider)
+        if (placedObject != null)
         {
-            Vector3 position = tablePlacementPoint.position;
+            placedObject.transform.SetPositionAndRotation(
+                endPosition,
+                endRotation);
 
-            Collider objectCollider =
-                placedObject.GetComponentInChildren<Collider>();
+            placedObject.transform.SetParent(
+                tablePlacementPoint,
+                true);
 
-            if (objectCollider == null)
-            {
-                return position;
-            }
+            SetObjectCollidersEnabled(objectColliders, true);
 
-            float paperHalfHeight =
-                objectCollider.bounds.extents.y;
+            PlacedObject = placedObject;
+        }
 
-            if (tableSurfaceCollider != null)
-            {
-                position.y =
-                    tableSurfaceCollider.bounds.max.y +
-                    paperHalfHeight;
-            }
-            else
-            {
-                // When no tabletop collider is assigned, the placement
-                // point is treated as the tabletop surface.
-                position.y += paperHalfHeight;
-            }
+        isPlacingObject = false;
+    }
 
+    private Vector3 GetTableSurfacePosition(
+        GameObject placedObject,
+        Transform tablePlacementPoint,
+        Collider tableSurfaceCollider)
+    {
+        Vector3 position = tablePlacementPoint.position;
+
+        Collider objectCollider =
+            placedObject.GetComponentInChildren<Collider>();
+
+        if (objectCollider == null)
+        {
             return position;
         }
 
-        private void SetObjectCollidersEnabled(
-            Collider[] colliders,
-            bool enabled)
+        float paperHalfHeight =
+            objectCollider.bounds.extents.y;
+
+        if (tableSurfaceCollider != null)
         {
-            foreach (Collider objectCollider in colliders)
-            {
-                if (objectCollider != null)
-                {
-                    objectCollider.enabled = enabled;
-                }
-            }
+            position.y =
+                tableSurfaceCollider.bounds.max.y +
+                paperHalfHeight;
+        }
+        else
+        {
+            // When no tabletop collider is assigned, the placement
+            // point is treated as the tabletop surface.
+            position.y += paperHalfHeight;
         }
 
-        public void DepartAndDisappear(
-            Vector3 direction,
-            float distance,
-            float duration)
+        return position;
+    }
+
+    private void SetObjectCollidersEnabled(
+        Collider[] colliders,
+        bool enabled)
+    {
+        foreach (Collider objectCollider in colliders)
         {
-            StartCoroutine(DepartRoutine(
-                direction,
-                Mathf.Max(0f, distance),
-                Mathf.Max(0.01f, duration)));
+            if (objectCollider != null)
+            {
+                objectCollider.enabled = enabled;
+            }
+        }
+    }
+
+    public void DepartAndDisappear(
+        Vector3 direction,
+        float distance,
+        float duration)
+    {
+        StartCoroutine(DepartRoutine(
+            direction,
+            Mathf.Max(0f, distance),
+            Mathf.Max(0.01f, duration)));
+    }
+
+    private IEnumerator DepartRoutine(
+        Vector3 direction,
+        float distance,
+        float duration)
+    {
+        isMoving = false;
+
+        direction.y = 0f;
+
+        if (direction.sqrMagnitude <= 0.001f)
+        {
+            direction = Vector3.forward;
         }
 
-        private IEnumerator DepartRoutine(
-            Vector3 direction,
-            float distance,
-            float duration)
+        direction.Normalize();
+
+        Vector3 startPosition = transform.position;
+        Vector3 endPosition = startPosition + direction * distance;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
         {
-            isMoving = false;
+            elapsedTime += Time.deltaTime;
 
-            direction.y = 0f;
+            float progress = Mathf.Clamp01(
+                elapsedTime / duration);
 
-            if (direction.sqrMagnitude <= 0.001f)
-            {
-                direction = Vector3.forward;
-            }
+            transform.position =
+                Vector3.Lerp(startPosition, endPosition, progress);
 
-            direction.Normalize();
+            transform.forward = direction;
 
-            Vector3 startPosition = transform.position;
-            Vector3 endPosition = startPosition + direction * distance;
-            float elapsedTime = 0f;
-
-            while (elapsedTime < duration)
-            {
-                elapsedTime += Time.deltaTime;
-
-                float progress = Mathf.Clamp01(
-                    elapsedTime / duration);
-
-                transform.position =
-                    Vector3.Lerp(startPosition, endPosition, progress);
-
-                transform.forward = direction;
-
-                yield return null;
-            }
-
-            transform.position = endPosition;
-            Destroy(gameObject);
+            yield return null;
         }
 
-        public bool TakePlacedObject()
+        transform.position = endPosition;
+        Destroy(gameObject);
+    }
+
+    public bool TakePlacedObject()
+    {
+        if (PlacedObject == null)
         {
-            if (PlacedObject == null)
-            {
-                return false;
-            }
-
-            Transform holdPoint = itemHoldPoint != null
-                ? itemHoldPoint
-                : transform;
-
-            PlacedObject.transform.SetParent(holdPoint, false);
-            PlacedObject.transform.localPosition = Vector3.zero;
-            PlacedObject.transform.localRotation = Quaternion.identity;
-
-            Rigidbody objectRigidbody =
-                PlacedObject.GetComponentInChildren<Rigidbody>();
-
-            if (objectRigidbody != null)
-            {
-                objectRigidbody.isKinematic = true;
-                objectRigidbody.linearVelocity = Vector3.zero;
-                objectRigidbody.angularVelocity = Vector3.zero;
-            }
-
-            return true;
+            return false;
         }
+
+        Transform holdPoint = itemHoldPoint != null
+            ? itemHoldPoint
+            : transform;
+
+        PlacedObject.transform.SetParent(
+            holdPoint,
+            true);
+
+        PlacedObject.transform.localPosition =
+            Vector3.zero;
+
+        PlacedObject.transform.localRotation =
+            Quaternion.identity;
+
+        Rigidbody objectRigidbody =
+            PlacedObject.GetComponentInChildren<Rigidbody>();
+
+        if (objectRigidbody != null)
+        {
+            objectRigidbody.isKinematic = true;
+            objectRigidbody.useGravity = false;
+            objectRigidbody.linearVelocity = Vector3.zero;
+            objectRigidbody.angularVelocity = Vector3.zero;
+        }
+
+        isHoldingObject = true;
+
+        return true;
+    }
+
+    public IEnumerator RetrievePlacedObject(float retrievalDuration)
+    {
+        if (PlacedObject == null)
+        {
+            yield break;
+        }
+
+        Transform holdPoint = itemHoldPoint != null
+            ? itemHoldPoint
+            : transform;
+
+        GameObject retrievedObject = PlacedObject;
+
+        Collider[] objectColliders =
+            retrievedObject.GetComponentsInChildren<Collider>();
+
+        SetObjectCollidersEnabled(
+            objectColliders,
+            false);
+
+        Rigidbody objectRigidbody =
+            retrievedObject.GetComponentInChildren<Rigidbody>();
+
+        if (objectRigidbody != null)
+        {
+            objectRigidbody.isKinematic = true;
+            objectRigidbody.useGravity = false;
+            objectRigidbody.linearVelocity = Vector3.zero;
+            objectRigidbody.angularVelocity = Vector3.zero;
+        }
+
+        retrievedObject.transform.SetParent(
+            holdPoint,
+            true);
+
+        Vector3 startLocalPosition =
+            retrievedObject.transform.localPosition;
+
+        Quaternion startLocalRotation =
+            retrievedObject.transform.localRotation;
+
+        float elapsedTime = 0f;
+        float duration = Mathf.Max(
+            0.1f,
+            retrievalDuration);
+
+        while (elapsedTime < duration)
+        {
+            if (retrievedObject == null)
+            {
+                yield break;
+            }
+
+            elapsedTime += Time.deltaTime;
+
+            float progress = Mathf.Clamp01(
+                elapsedTime / duration);
+
+            float smoothProgress =
+                Mathf.SmoothStep(0f, 1f, progress);
+
+            Vector3 animatedLocalPosition =
+                Vector3.Lerp(
+                    startLocalPosition,
+                    Vector3.zero,
+                    smoothProgress);
+
+            animatedLocalPosition += Vector3.up *
+                (itemArcHeight *
+                 Mathf.Sin(smoothProgress * Mathf.PI));
+
+            retrievedObject.transform.localPosition =
+                animatedLocalPosition;
+
+            retrievedObject.transform.localRotation =
+                Quaternion.Slerp(
+                    startLocalRotation,
+                    Quaternion.identity,
+                    smoothProgress);
+
+            yield return null;
+        }
+
+        if (retrievedObject == null)
+        {
+            yield break;
+        }
+
+        retrievedObject.transform.localPosition =
+            Vector3.zero;
+
+        retrievedObject.transform.localRotation =
+            Quaternion.identity;
+
+        SetObjectCollidersEnabled(
+            objectColliders,
+            true);
+
+        isHoldingObject = true;
+    }
+
+    private void LateUpdate()
+    {
+        if (!isHoldingObject ||
+            PlacedObject == null)
+        {
+            return;
+        }
+
+        Transform holdPoint = itemHoldPoint != null
+            ? itemHoldPoint
+            : transform;
+
+        PlacedObject.transform.SetPositionAndRotation(
+            holdPoint.position,
+            holdPoint.rotation);
     }
 }

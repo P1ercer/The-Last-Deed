@@ -54,6 +54,9 @@ namespace GameAssets.Scripts
         [SerializeField] private Vector3 dialogueLocalPosition =
             new Vector3(0f, 0f, 1.5f);
 
+        [Header("NPC Retrieval")]
+        [SerializeField] private float objectRetrievalDuration = 1.25f;
+
         private readonly List<NpcBehavior> npcs =
             new List<NpcBehavior>();
 
@@ -61,6 +64,7 @@ namespace GameAssets.Scripts
 
         private bool dialogueStarted;
         private bool dialogueFinished;
+        private bool isResolving;
 
         private void Start()
         {
@@ -224,6 +228,7 @@ namespace GameAssets.Scripts
                 npcs[0] == null ||
                 npcs[0].PlacedObject == null ||
                 npcs[0].IsPlacingObject ||
+                isResolving ||
                 !dialogueFinished ||
                 Time.time < nextDecisionTime)
             {
@@ -236,17 +241,35 @@ namespace GameAssets.Scripts
 
         private void ResolveCurrentNpc()
         {
-            NpcBehavior currentNpc = npcs[0];
-
-            if (currentNpc != null)
+            if (isResolving || npcs.Count == 0)
             {
-                currentNpc.TakePlacedObject();
+                return;
             }
 
-            npcs.RemoveAt(0);
+            isResolving = true;
+
+            StartCoroutine(
+                ResolveCurrentNpcRoutine(npcs[0]));
+        }
+
+        private IEnumerator ResolveCurrentNpcRoutine(
+            NpcBehavior currentNpc)
+        {
+            if (currentNpc != null)
+            {
+                yield return currentNpc.RetrievePlacedObject(
+                    objectRetrievalDuration);
+            }
+
+            if (npcs.Count > 0 &&
+                npcs[0] == currentNpc)
+            {
+                npcs.RemoveAt(0);
+            }
 
             dialogueStarted = false;
             dialogueFinished = false;
+            isResolving = false;
 
             if (currentNpc != null)
             {

@@ -32,8 +32,14 @@ namespace GameAssets.Scripts
         private bool wasLeftTriggerPressed;
         private bool wasRightTriggerPressed;
 
-        [Header("Paper Interaction")]
+        [Header("Stamp Points")]
+        [SerializeField] private Transform grabPoint;
+        [SerializeField] private Transform stampPoint;
         [SerializeField] private float paperStampDistance = 0.25f;
+
+        [Header("Decision Image")]
+        [SerializeField] private GameObject decisionImageCanvasPrefab;
+        [SerializeField] private float imageSurfaceOffset = 0.001f;
 
         [Header("Gizmo")]
         [SerializeField] private bool showGizmoDuringPlay = true;
@@ -138,15 +144,19 @@ namespace GameAssets.Scripts
                 return false;
             }
 
+            Transform actualStampPoint = stampPoint != null
+                ? stampPoint
+                : transform;
+
             Collider paperCollider =
                 paperObject.GetComponentInChildren<Collider>();
 
             Vector3 closestPoint = paperCollider != null
-                ? paperCollider.ClosestPoint(transform.position)
+                ? paperCollider.ClosestPoint(actualStampPoint.position)
                 : paperObject.transform.position;
 
             return Vector3.Distance(
-                transform.position,
+                actualStampPoint.position,
                 closestPoint) <= paperStampDistance;
         }
 
@@ -173,10 +183,74 @@ namespace GameAssets.Scripts
                 ? queueManager.AcceptNpc()
                 : queueManager.DeclineNpc();
 
-            if (decisionCompleted)
+            if (!decisionCompleted)
             {
-                CreateDecisionLabel(paperObject);
+                return;
             }
+
+            CreateDecisionImage(paperObject);
+        }
+
+        private void CreateDecisionImage(GameObject stampedObject)
+        {
+            if (decisionImageCanvasPrefab == null ||
+                stampedObject == null)
+            {
+                Debug.LogWarning(
+                    "DecisionStamp requires a decision image canvas prefab.",
+                    this);
+
+                return;
+            }
+
+            Collider paperCollider =
+                stampedObject.GetComponentInChildren<Collider>();
+
+            if (paperCollider == null)
+            {
+                Debug.LogWarning(
+                    "The stamped object requires a Collider.",
+                    stampedObject);
+
+                return;
+            }
+
+            Transform actualStampPoint = stampPoint != null
+                ? stampPoint
+                : transform;
+
+            Vector3 closestPoint =
+                paperCollider.ClosestPoint(
+                    actualStampPoint.position);
+
+            Vector3 directionToSurface =
+                closestPoint - actualStampPoint.position;
+
+            Vector3 surfaceNormal;
+
+            if (directionToSurface.sqrMagnitude > 0.001f)
+            {
+                surfaceNormal = -directionToSurface.normalized;
+            }
+            else
+            {
+                surfaceNormal = -actualStampPoint.up;
+            }
+
+            GameObject decisionImage = Instantiate(
+                decisionImageCanvasPrefab);
+
+            decisionImage.SetActive(true);
+
+            decisionImage.transform.SetParent(
+                stampedObject.transform,
+                true);
+
+            decisionImage.transform.SetPositionAndRotation(
+                closestPoint + surfaceNormal * imageSurfaceOffset,
+                Quaternion.LookRotation(
+                    surfaceNormal,
+                    actualStampPoint.up));
         }
 
         private void CreateDecisionLabel(GameObject stampedObject)

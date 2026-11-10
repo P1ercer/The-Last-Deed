@@ -179,7 +179,7 @@ MonoBehaviour:
   frontOfTable: {fileID: 3030342832100623905}
   spawnPoint: {fileID: 5881280789939283691}
   queueDirection: {fileID: 5024395279428454689}
-  decisionObjectPrefab: {fileID: 0}
+  decisionObjectPrefab: {fileID: 7832549664456977361, guid: e2f7b43f9f4919948a56a080886d79e0, type: 3}
   tablePlacementPoint: {fileID: 7584741501520766230}
   tableSurfaceCollider: {fileID: 4374041924871722404}
   objectPlacementDuration: 0.75
@@ -228,6 +228,7 @@ MonoBehaviour:
   dialogueDuration: 1
   dialoguePanelPrefab: {fileID: 0}
   dialogueLocalPosition: {x: 0, y: 0, z: 1.5}
+  objectRetrievalDuration: 1.25
 --- !u!1001 &1959844470517221314
 PrefabInstance:
   m_ObjectHideFlags: 0
