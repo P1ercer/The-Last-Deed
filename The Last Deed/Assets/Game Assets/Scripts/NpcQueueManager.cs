@@ -1,4 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -40,10 +43,24 @@ namespace GameAssets.Scripts
         [SerializeField] private float queueDirectionArrowHeadLength = 0.4f;
         [SerializeField] private float queueDirectionArrowHeadWidth = 0.2f;
 
+        [Header("VR Dialogue")]
+        [SerializeField] private Transform vrEyes;
+        [SerializeField] private TMP_Text dialogueText;
+        [SerializeField] private string defaultDialogueText =
+            "I have something important for you.";
+        [SerializeField] private float secondsPerCharacter = 0.05f;
+        [SerializeField] private float dialogueDuration = 2f;
+        [SerializeField] private GameObject dialoguePanelPrefab;
+        [SerializeField] private Vector3 dialogueLocalPosition =
+            new Vector3(0f, 0f, 1.5f);
+
         private readonly List<NpcBehavior> npcs =
             new List<NpcBehavior>();
 
         private float nextDecisionTime;
+
+        private bool dialogueStarted;
+        private bool dialogueFinished;
 
         private void Start()
         {
@@ -90,17 +107,26 @@ namespace GameAssets.Scripts
 
             if (currentNpc == null ||
                 currentNpc.IsMoving ||
-                currentNpc.IsPlacingObject ||
-                currentNpc.PlacedObject != null)
+                currentNpc.IsPlacingObject)
             {
                 return;
             }
 
-            currentNpc.PlaceObjectOnTable(
-                decisionObjectPrefab,
-                tablePlacementPoint,
-                tableSurfaceCollider,
-                objectPlacementDuration); // Added missing argument
+            if (currentNpc.PlacedObject == null)
+            {
+                currentNpc.PlaceObjectOnTable(
+                    decisionObjectPrefab,
+                    tablePlacementPoint,
+                    tableSurfaceCollider,
+                    objectPlacementDuration);
+
+                return;
+            }
+
+            if (!dialogueStarted)
+            {
+                StartCoroutine(BeginNpcDialogue(currentNpc));
+            }
         }
 
         private void SpawnNpc(int queueIndex)
@@ -198,6 +224,7 @@ namespace GameAssets.Scripts
                 npcs[0] == null ||
                 npcs[0].PlacedObject == null ||
                 npcs[0].IsPlacingObject ||
+                !dialogueFinished ||
                 Time.time < nextDecisionTime)
             {
                 return false;
@@ -217,6 +244,9 @@ namespace GameAssets.Scripts
             }
 
             npcs.RemoveAt(0);
+
+            dialogueStarted = false;
+            dialogueFinished = false;
 
             if (currentNpc != null)
             {
@@ -250,6 +280,91 @@ namespace GameAssets.Scripts
             }
 
             return currentNpc.PlacedObject;
+        }
+
+        private IEnumerator BeginNpcDialogue(NpcBehavior currentNpc)
+        {
+            dialogueStarted = true;
+            dialogueFinished = false;
+
+            if (vrEyes != null)
+            {
+                Vector3 directionToPlayer =
+                    vrEyes.position - currentNpc.transform.position;
+
+                currentNpc.FaceDirection(directionToPlayer);
+            }
+
+            if (dialogueText == null)
+            {
+                Debug.LogWarning(
+                    "NpcQueueManager requires a TMP dialogue text reference.",
+                    this);
+
+                dialogueFinished = true;
+                yield break;
+            }
+
+            string dialogueToDisplay =
+                GetDialogueText(currentNpc);
+
+            dialogueText.gameObject.SetActive(true);
+            dialogueText.text = string.Empty;
+
+            float characterDelay = Mathf.Max(
+                0.01f,
+                secondsPerCharacter);
+
+            foreach (char character in dialogueToDisplay)
+            {
+                dialogueText.text += character;
+                yield return new WaitForSeconds(characterDelay);
+            }
+
+            yield return new WaitForSeconds(
+                Mathf.Max(0.01f, dialogueDuration));
+
+            dialogueText.gameObject.SetActive(false);
+            dialogueFinished = true;
+        }
+
+        private string GetDialogueText(NpcBehavior currentNpc)
+        {
+            NpcDialogue npcDialogue =
+                currentNpc.GetComponent<NpcDialogue>();
+
+            if (npcDialogue == null ||
+                npcDialogue.LineCount == 0)
+            {
+                return defaultDialogueText;
+            }
+
+            StringBuilder dialogueBuilder =
+                new StringBuilder();
+
+            for (int i = 0; i < npcDialogue.LineCount; i++)
+            {
+                string line = npcDialogue.GetLine(i);
+
+                if (string.IsNullOrWhiteSpace(line))
+                {
+                    continue;
+                }
+
+                if (dialogueBuilder.Length > 0)
+                {
+                    dialogueBuilder.AppendLine();
+                }
+
+                dialogueBuilder.Append(line);
+            }
+
+            if (dialogueBuilder.Length == 0)
+            {
+                return defaultDialogueText;
+            }
+
+            return dialogueBuilder.ToString();
         }
 
         private void OnDrawGizmos()

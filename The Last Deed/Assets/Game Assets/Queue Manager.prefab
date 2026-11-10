@@ -185,7 +185,7 @@ MonoBehaviour:
   objectPlacementDuration: 0.75
   departureDistance: 3
   departureDuration: 2
-  decisionCooldown: 0.25
+  decisionCooldown: 0
   onNpcAccepted:
     m_PersistentCalls:
       m_Calls:
@@ -221,6 +221,13 @@ MonoBehaviour:
   queueDirectionArrowLength: 2
   queueDirectionArrowHeadLength: 0.3
   queueDirectionArrowHeadWidth: 0.2
+  vrEyes: {fileID: 0}
+  dialogueText: {fileID: 0}
+  defaultDialogueText: beleejejejejej
+  secondsPerCharacter: 0.05
+  dialogueDuration: 1
+  dialoguePanelPrefab: {fileID: 0}
+  dialogueLocalPosition: {x: 0, y: 0, z: 1.5}
 --- !u!1001 &1959844470517221314
 PrefabInstance:
   m_ObjectHideFlags: 0

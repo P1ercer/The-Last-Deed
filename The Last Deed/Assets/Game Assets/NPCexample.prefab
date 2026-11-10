@@ -66,6 +66,7 @@ GameObject:
   - component: {fileID: 6045276805194716854}
   - component: {fileID: 6030627208573438063}
   - component: {fileID: 1924994100488679780}
+  - component: {fileID: 3870630602314676896}
   m_Layer: 0
   m_Name: NPCexample
   m_TagString: Untagged
@@ -186,6 +187,23 @@ MonoBehaviour:
   stoppingDistance: 0.05
   itemHoldPoint: {fileID: 2626321464133693137}
   itemArcHeight: 0.25
+--- !u!114 &3870630602314676896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3850242007758502039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7918da84a6759a2489ae1e02a12c7425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameAssets.Scripts.NpcDialogue
+  dialogueLines:
+  - Hello, i have something to say!
+  - Yo mama so stupid
+  - that she bought tickets to...
+  - XBOX LIVE!!!!!
 --- !u!1 &7049625212239010285
 GameObject:
   m_ObjectHideFlags: 0
