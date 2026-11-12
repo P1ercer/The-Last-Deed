@@ -5,10 +5,15 @@ namespace GameAssets.Scripts
 {
     public class NpcDialogue : MonoBehaviour
     {
+        [Header("NPC Information")]
+        [SerializeField] private string npcName = "NPC";
+
         [Header("NPC Dialogue")]
         [SerializeField, TextArea(2, 5)]
         private List<string> dialogueLines =
             new List<string>();
+
+        public string NpcName => npcName;
 
         public int LineCount => dialogueLines.Count;
 
@@ -21,6 +26,14 @@ namespace GameAssets.Scripts
             }
 
             return dialogueLines[lineIndex];
+        }
+
+        public void SetNpcName(string name)
+        {
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                npcName = name;
+            }
         }
     }
 }

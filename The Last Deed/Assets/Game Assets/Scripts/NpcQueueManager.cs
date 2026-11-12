@@ -11,8 +11,15 @@ namespace GameAssets.Scripts
     {
         [Header("NPC")]
         [SerializeField] private NpcBehavior npcPrefab;
+        [SerializeField] private List<NpcBehavior> npcPrefabs =
+            new List<NpcBehavior>();
         [SerializeField] private int startingNpcCount = 4;
         [SerializeField] private float distanceBetweenNpcs = 1.5f;
+
+        [Header("NPC Names")]
+        [SerializeField] private List<string> npcNames =
+            new List<string>();
+        [SerializeField] private bool randomizeNpcNames = true;
 
         [Header("Queue Positions")]
         [SerializeField] private Transform frontOfTable;
@@ -45,6 +52,7 @@ namespace GameAssets.Scripts
 
         [Header("VR Dialogue")]
         [SerializeField] private Transform vrEyes;
+        [SerializeField] private TMP_Text npcNameText;
         [SerializeField] private TMP_Text dialogueText;
         [SerializeField] private string defaultDialogueText =
             "I have something important for you.";
@@ -135,6 +143,18 @@ namespace GameAssets.Scripts
 
         private void SpawnNpc(int queueIndex)
         {
+            NpcBehavior selectedPrefab =
+                GetRandomNpcPrefab();
+
+            if (selectedPrefab == null)
+            {
+                Debug.LogError(
+                    "NpcQueueManager requires at least one NPC prefab.",
+                    this);
+
+                return;
+            }
+
             Vector3 spawnPosition = spawnPoint.position;
 
             if (queueIndex > 0)
@@ -144,13 +164,51 @@ namespace GameAssets.Scripts
             }
 
             NpcBehavior npc = Instantiate(
-                npcPrefab,
+                selectedPrefab,
                 spawnPosition,
-                npcPrefab.transform.rotation);
+                selectedPrefab.transform.rotation);
+
+            AssignNpcName(npc);
 
             npcs.Add(npc);
             npc.MoveTo(GetQueuePosition(queueIndex));
             npc.FaceDirection(-GetQueueDirection());
+        }
+
+        private NpcBehavior GetRandomNpcPrefab()
+        {
+            if (npcPrefabs.Count > 0)
+            {
+                int randomIndex =
+                    Random.Range(0, npcPrefabs.Count);
+
+                return npcPrefabs[randomIndex];
+            }
+
+            return npcPrefab;
+        }
+
+        private void AssignNpcName(NpcBehavior npc)
+        {
+            if (!randomizeNpcNames ||
+                npcNames.Count == 0)
+            {
+                return;
+            }
+
+            NpcDialogue npcDialogue =
+                npc.GetComponent<NpcDialogue>();
+
+            if (npcDialogue == null)
+            {
+                return;
+            }
+
+            int randomIndex =
+                Random.Range(0, npcNames.Count);
+
+            npcDialogue.SetNpcName(
+                npcNames[randomIndex]);
         }
 
         private Vector3 GetQueuePosition(int queueIndex)
@@ -318,6 +376,18 @@ namespace GameAssets.Scripts
                 currentNpc.FaceDirection(directionToPlayer);
             }
 
+            NpcDialogue npcDialogue =
+                currentNpc.GetComponent<NpcDialogue>();
+
+            if (npcNameText != null)
+            {
+                npcNameText.text = npcDialogue != null
+                    ? npcDialogue.NpcName
+                    : "NPC";
+
+                npcNameText.gameObject.SetActive(true);
+            }
+
             if (dialogueText == null)
             {
                 Debug.LogWarning(
@@ -348,6 +418,12 @@ namespace GameAssets.Scripts
                 Mathf.Max(0.01f, dialogueDuration));
 
             dialogueText.gameObject.SetActive(false);
+
+            if (npcNameText != null)
+            {
+                npcNameText.gameObject.SetActive(false);
+            }
+
             dialogueFinished = true;
         }
 
@@ -382,16 +458,14 @@ namespace GameAssets.Scripts
                 dialogueBuilder.Append(line);
             }
 
-            if (dialogueBuilder.Length == 0)
-            {
-                return defaultDialogueText;
-            }
-
-            return dialogueBuilder.ToString();
+            return dialogueBuilder.Length > 0
+                ? dialogueBuilder.ToString()
+                : defaultDialogueText;
         }
 
         private void OnDrawGizmos()
         {
+            //lit just to show which way the queue is facing for the devs
             if (!showQueueDirectionGizmo)
             {
                 return;

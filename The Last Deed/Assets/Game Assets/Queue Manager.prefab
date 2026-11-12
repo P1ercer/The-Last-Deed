@@ -174,12 +174,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameAssets.Scripts.NpcQueueManager
   npcPrefab: {fileID: 1924994100488679780, guid: 4743342660d6f6e42bc8fcf54f1d17f1, type: 3}
+  npcPrefabs:
+  - {fileID: 1924994100488679780, guid: 4743342660d6f6e42bc8fcf54f1d17f1, type: 3}
   startingNpcCount: 4
   distanceBetweenNpcs: 1.5
+  npcNames: []
+  randomizeNpcNames: 1
   frontOfTable: {fileID: 3030342832100623905}
   spawnPoint: {fileID: 5881280789939283691}
   queueDirection: {fileID: 5024395279428454689}
-  decisionObjectPrefab: {fileID: 7832549664456977361, guid: e2f7b43f9f4919948a56a080886d79e0, type: 3}
+  decisionObjectPrefab: {fileID: 0}
   tablePlacementPoint: {fileID: 7584741501520766230}
   tableSurfaceCollider: {fileID: 4374041924871722404}
   objectPlacementDuration: 0.75
@@ -222,6 +226,7 @@ MonoBehaviour:
   queueDirectionArrowHeadLength: 0.3
   queueDirectionArrowHeadWidth: 0.2
   vrEyes: {fileID: 0}
+  npcNameText: {fileID: 0}
   dialogueText: {fileID: 0}
   defaultDialogueText: beleejejejejej
   secondsPerCharacter: 0.05

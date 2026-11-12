@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.UI;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -40,6 +41,8 @@ namespace GameAssets.Scripts
         [Header("Decision Image")]
         [SerializeField] private GameObject decisionImageCanvasPrefab;
         [SerializeField] private float imageSurfaceOffset = 0.001f;
+        [SerializeField] private float imageScale = 0.01f;
+        [SerializeField] private Vector3 imageRotationOffset;
 
         [Header("Gizmo")]
         [SerializeField] private bool showGizmoDuringPlay = true;
@@ -219,38 +222,141 @@ namespace GameAssets.Scripts
                 ? stampPoint
                 : transform;
 
-            Vector3 closestPoint =
-                paperCollider.ClosestPoint(
-                    actualStampPoint.position);
+            Vector3 rayDirection = -actualStampPoint.up;
 
-            Vector3 directionToSurface =
-                closestPoint - actualStampPoint.position;
-
-            Vector3 surfaceNormal;
-
-            if (directionToSurface.sqrMagnitude > 0.001f)
+            if (rayDirection.sqrMagnitude <= 0.001f)
             {
-                surfaceNormal = -directionToSurface.normalized;
+                rayDirection = Vector3.down;
+            }
+
+            rayDirection.Normalize();
+
+            Ray stampRay = new Ray(
+                actualStampPoint.position -
+                rayDirection * 0.01f,
+                rayDirection);
+
+            Vector3 paperSurfacePoint;
+            Vector3 paperSurfaceNormal;
+
+            if (paperCollider.Raycast(
+                    stampRay,
+                    out RaycastHit hit,
+                    paperStampDistance + 0.5f))
+            {
+                paperSurfacePoint = hit.point;
+                paperSurfaceNormal = hit.normal;
             }
             else
             {
-                surfaceNormal = -actualStampPoint.up;
+                paperSurfacePoint =
+                    paperCollider.ClosestPoint(
+                        actualStampPoint.position);
+
+                paperSurfaceNormal =
+                    stampedObject.transform.up;
             }
 
-            GameObject decisionImage = Instantiate(
-                decisionImageCanvasPrefab);
+            Vector3 imageUp =
+                Vector3.ProjectOnPlane(
+                    stampedObject.transform.forward,
+                    paperSurfaceNormal);
+
+            if (imageUp.sqrMagnitude <= 0.001f)
+            {
+                imageUp =
+                    Vector3.ProjectOnPlane(
+                        stampedObject.transform.right,
+                        paperSurfaceNormal);
+            }
+
+            imageUp.Normalize();
+
+            Quaternion imageRotation =
+                Quaternion.LookRotation(
+                    paperSurfaceNormal,
+                    imageUp);
+
+            GameObject decisionImage =
+                Instantiate(decisionImageCanvasPrefab);
 
             decisionImage.SetActive(true);
+
+            Image[] images =
+                decisionImage.GetComponentsInChildren<Image>(
+                    true);
+
+            foreach (Image image in images)
+            {
+                image.preserveAspect = true;
+                image.type = Image.Type.Simple;
+
+                RectTransform imageRect =
+                    image.rectTransform;
+
+                Vector3 originalImageScale =
+                    imageRect.localScale;
+
+                float uniformImageScale =
+                    Mathf.Min(
+                        Mathf.Abs(originalImageScale.x),
+                        Mathf.Abs(originalImageScale.y));
+
+                imageRect.localScale =
+                    new Vector3(
+                        uniformImageScale,
+                        uniformImageScale,
+                        1f);
+
+                imageRect.localRotation =
+                    Quaternion.identity;
+            }
+
+            Vector3 desiredWorldScale =
+                decisionImage.transform.localScale;
+
+            Vector3 prefabScale =
+                decisionImage.transform.localScale;
+
+            float uniformPlaneScale =
+                (Mathf.Abs(prefabScale.x) +
+                 Mathf.Abs(prefabScale.y)) * 0.5f;
 
             decisionImage.transform.SetParent(
                 stampedObject.transform,
                 true);
 
+            Vector3 parentScale =
+                stampedObject.transform.lossyScale;
+
+            decisionImage.transform.localScale =
+                new Vector3(
+                    GetCompensatedScale(
+                        uniformPlaneScale,
+                        parentScale.x),
+                    GetCompensatedScale(
+                        uniformPlaneScale,
+                        parentScale.y),
+                    GetCompensatedScale(
+                        prefabScale.z,
+                        parentScale.z));
+
             decisionImage.transform.SetPositionAndRotation(
-                closestPoint + surfaceNormal * imageSurfaceOffset,
-                Quaternion.LookRotation(
-                    surfaceNormal,
-                    actualStampPoint.up));
+                paperSurfacePoint +
+                paperSurfaceNormal * imageSurfaceOffset,
+                imageRotation);
+        }
+
+        private float GetCompensatedScale(
+            float desiredScale,
+            float parentScale)
+        {
+            if (Mathf.Abs(parentScale) <= 0.0001f)
+            {
+                return desiredScale;
+            }
+
+            return desiredScale / parentScale;
         }
 
         private void CreateDecisionLabel(GameObject stampedObject)

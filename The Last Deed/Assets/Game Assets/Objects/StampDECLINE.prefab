@@ -164,6 +164,8 @@ MonoBehaviour:
   paperStampDistance: 0.25
   decisionImageCanvasPrefab: {fileID: 8118964178812824613, guid: 63fd2c75732d327479fe30506d0ce6b6, type: 3}
   imageSurfaceOffset: 0
+  imageScale: 0
+  imageRotationOffset: {x: 0, y: 0, z: 0}
   showGizmoDuringPlay: 0
   showGizmoInEditMode: 1
   gizmoTextHeight: 0.25
