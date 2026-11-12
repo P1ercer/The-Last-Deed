@@ -163,8 +163,8 @@ MonoBehaviour:
   stampPoint: {fileID: 1903119871285646386}
   paperStampDistance: 0.25
   decisionImageCanvasPrefab: {fileID: 8118964178812824613, guid: 63fd2c75732d327479fe30506d0ce6b6, type: 3}
-  imageSurfaceOffset: 0.001
-  showGizmoDuringPlay: 1
+  imageSurfaceOffset: 0
+  showGizmoDuringPlay: 0
   showGizmoInEditMode: 1
   gizmoTextHeight: 0.25
   gizmoTextSize: 18
@@ -234,7 +234,6 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders:
   - {fileID: 2131705184039158373}
-  - {fileID: 0}
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
