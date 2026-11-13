@@ -288,28 +288,38 @@ namespace GameAssets.Scripts
 
             foreach (Image image in images)
             {
-                image.preserveAspect = true;
+                if (image.sprite == null)
+                {
+                    continue;
+                }
+
                 image.type = Image.Type.Simple;
+                image.preserveAspect = true;
 
                 RectTransform imageRect =
                     image.rectTransform;
 
-                Vector3 originalImageScale =
-                    imageRect.localScale;
+                imageRect.localScale = Vector3.one;
 
-                float uniformImageScale =
-                    Mathf.Min(
-                        Mathf.Abs(originalImageScale.x),
-                        Mathf.Abs(originalImageScale.y));
+                float spriteAspectRatio =
+                    image.sprite.rect.width /
+                    image.sprite.rect.height;
 
-                imageRect.localScale =
-                    new Vector3(
-                        uniformImageScale,
-                        uniformImageScale,
-                        1f);
+                AspectRatioFitter aspectRatioFitter =
+                    image.GetComponent<AspectRatioFitter>();
 
-                imageRect.localRotation =
-                    Quaternion.identity;
+                if (aspectRatioFitter == null)
+                {
+                    aspectRatioFitter =
+                        image.gameObject.AddComponent<
+                            AspectRatioFitter>();
+                }
+
+                aspectRatioFitter.aspectMode =
+                    AspectRatioFitter.AspectMode.FitInParent;
+
+                aspectRatioFitter.aspectRatio =
+                    spriteAspectRatio;
             }
 
             Vector3 desiredWorldScale =
@@ -318,7 +328,7 @@ namespace GameAssets.Scripts
             Vector3 prefabScale =
                 decisionImage.transform.localScale;
 
-            float uniformPlaneScale =
+            float uniformCanvasScale =
                 (Mathf.Abs(prefabScale.x) +
                  Mathf.Abs(prefabScale.y)) * 0.5f;
 
@@ -332,10 +342,10 @@ namespace GameAssets.Scripts
             decisionImage.transform.localScale =
                 new Vector3(
                     GetCompensatedScale(
-                        uniformPlaneScale,
+                        uniformCanvasScale,
                         parentScale.x),
                     GetCompensatedScale(
-                        uniformPlaneScale,
+                        uniformCanvasScale,
                         parentScale.y),
                     GetCompensatedScale(
                         prefabScale.z,
