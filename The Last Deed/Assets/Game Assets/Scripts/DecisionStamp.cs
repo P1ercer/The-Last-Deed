@@ -41,7 +41,7 @@ namespace GameAssets.Scripts
         [Header("Decision Image")]
         [SerializeField] private GameObject decisionImageCanvasPrefab;
         [SerializeField] private float imageSurfaceOffset = 0.001f;
-        [SerializeField] private float imageScale = 0.01f;
+        [SerializeField] private float imageScale = 0.1f;
         [SerializeField] private Vector3 imageRotationOffset;
 
         [Header("Gizmo")]
@@ -322,52 +322,21 @@ namespace GameAssets.Scripts
                     spriteAspectRatio;
             }
 
-            Vector3 desiredWorldScale =
-                decisionImage.transform.localScale;
-
-            Vector3 prefabScale =
-                decisionImage.transform.localScale;
-
-            float uniformCanvasScale =
-                (Mathf.Abs(prefabScale.x) +
-                 Mathf.Abs(prefabScale.y)) * 0.5f;
-
             decisionImage.transform.SetParent(
                 stampedObject.transform,
                 true);
-
-            Vector3 parentScale =
-                stampedObject.transform.lossyScale;
-
-            decisionImage.transform.localScale =
-                new Vector3(
-                    GetCompensatedScale(
-                        uniformCanvasScale,
-                        parentScale.x),
-                    GetCompensatedScale(
-                        uniformCanvasScale,
-                        parentScale.y),
-                    GetCompensatedScale(
-                        prefabScale.z,
-                        parentScale.z));
 
             decisionImage.transform.SetPositionAndRotation(
                 paperSurfacePoint +
                 paperSurfaceNormal * imageSurfaceOffset,
                 imageRotation);
+
+            decisionImage.transform.localScale =
+                Vector3.one * imageScale;
+
         }
 
-        private float GetCompensatedScale(
-            float desiredScale,
-            float parentScale)
-        {
-            if (Mathf.Abs(parentScale) <= 0.0001f)
-            {
-                return desiredScale;
-            }
-
-            return desiredScale / parentScale;
-        }
+     
 
         private void CreateDecisionLabel(GameObject stampedObject)
         {

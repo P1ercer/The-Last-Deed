@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8758337673382530651}
   - component: {fileID: 1030810189667428283}
   - component: {fileID: 6213817691256825614}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Declined
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,8 @@ GameObject:
   - component: {fileID: 5216410126585042738}
   - component: {fileID: 850068191725780821}
   - component: {fileID: 5866439678622644566}
-  m_Layer: 5
+  - component: {fileID: 1544237143560587795}
+  m_Layer: 3
   m_Name: DeclinedCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +101,7 @@ RectTransform:
   m_GameObject: {fileID: 8118964178812824613}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0001959337, y: 0.0001636932, z: 0.003373814}
+  m_LocalScale: {x: 0.0001959337, y: 0.0001959337, z: 0.003373814}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8758337673382530651}
@@ -174,3 +175,33 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1544237143560587795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8118964178812824613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee10491ef6d5d1d49a270cf6b09bdc19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Oculus.VR::OVROverlayCanvas
+  _mipmapMode: 0
+  _dynamicResolution: 1
+  _redrawResolutionThreshold: 2147483647
+  rectTransform: {fileID: 5297070252432915339}
+  maxTextureSize: 2048
+  manualRedraw: 0
+  renderInterval: 1
+  renderIntervalFrameOffset: 0
+  superSample: 0
+  layer: 5
+  opacity: 2
+  shape: 0
+  curveRadius: 1
+  overlapMask: 0
+  compositionMode: 1
+  enable3D: 0
+  depthRange: 0.5
+  _overlayEnabled: 1
