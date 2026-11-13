@@ -87,7 +87,7 @@ namespace GameAssets.Scripts
 
             while (current != null)
             {
-                if (current.CompareTag("Paper"))
+                if (current.CompareTag("paper"))
                 {
                     return current;
                 }

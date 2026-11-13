@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1024636786788329485}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.04, y: 0.2, z: -3.04}
+  m_LocalPosition: {x: -0.055301666, y: 0.2, z: 0.0022611618}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 3402138158501234374}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99807006, z: -0, w: -0.06209863}
-  m_LocalPosition: {x: -4.05, y: 1.01, z: -3.04}
+  m_LocalPosition: {x: -0.065301895, y: 1.01, z: 0.0022611618}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 5359455542701370035}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99999046, z: -0, w: -0.0043757595}
-  m_LocalPosition: {x: -4.01, y: 1.01, z: -3.17}
+  m_LocalPosition: {x: -0.025301933, y: 1.01, z: -0.12773895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 5402759499734497276}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.044, y: 0.855, z: -2.72}
+  m_LocalPosition: {x: -1.0593019, y: 0.855, z: 0.3222611}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -183,7 +183,7 @@ MonoBehaviour:
   frontOfTable: {fileID: 3030342832100623905}
   spawnPoint: {fileID: 5881280789939283691}
   queueDirection: {fileID: 5024395279428454689}
-  decisionObjectPrefab: {fileID: 0}
+  decisionObjectPrefab: {fileID: 7832549664456977361, guid: e2f7b43f9f4919948a56a080886d79e0, type: 3}
   tablePlacementPoint: {fileID: 7584741501520766230}
   tableSurfaceCollider: {fileID: 4374041924871722404}
   objectPlacementDuration: 0.75
@@ -248,7 +248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6126088100617295877, guid: 494d02764474ed3499ee08ee423e7e43, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.4096985
+      value: -7.425
       objectReference: {fileID: 0}
     - target: {fileID: 6126088100617295877, guid: 494d02764474ed3499ee08ee423e7e43, type: 3}
       propertyPath: m_LocalPosition.y
@@ -256,7 +256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6126088100617295877, guid: 494d02764474ed3499ee08ee423e7e43, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.059261
+      value: -14.017
       objectReference: {fileID: 0}
     - target: {fileID: 6126088100617295877, guid: 494d02764474ed3499ee08ee423e7e43, type: 3}
       propertyPath: m_LocalRotation.w
@@ -318,9 +318,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 228325136409695832, guid: 494d02764474ed3499ee08ee423e7e43, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4374041924871722404}
-    - targetCorrespondingSourceObject: {fileID: 228325136409695832, guid: 494d02764474ed3499ee08ee423e7e43, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2430576881605683500}
   m_SourcePrefab: {fileID: 100100000, guid: 494d02764474ed3499ee08ee423e7e43, type: 3}
 --- !u!1 &1736674947915272602 stripped
 GameObject:
@@ -368,22 +365,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.044708267, y: 0.018850548, z: 0.0005175153}
-  m_Center: {x: 0.005382041, y: 0.000735269, z: 0.016851494}
---- !u!114 &2430576881605683500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736674947915272602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 244f2ad1b8e8b094bacb0340a824bf9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameAssets.Scripts.PaperDropOffZone
-  boundaryPadding: 1.21
-  edgePushDistance: 0.1
+  m_Size: {x: 0.044708267, y: 0.018850548, z: 0.0004400477}
+  m_Center: {x: 0.005382041, y: 0.000735269, z: 0.016812766}
 --- !u!1 &3964960398431389088 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3185340505530548834, guid: 494d02764474ed3499ee08ee423e7e43, type: 3}
