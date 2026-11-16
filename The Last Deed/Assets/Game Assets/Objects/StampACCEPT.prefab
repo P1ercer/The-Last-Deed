@@ -163,7 +163,7 @@ MonoBehaviour:
   grabPoint: {fileID: 9184833332425417309}
   stampPoint: {fileID: 5719427498139293461}
   paperStampDistance: 0.25
-  decisionImageCanvasPrefab: {fileID: 0}
+  decisionImageCanvasPrefab: {fileID: 4070166199198506672, guid: 17ce9d2c5e1aa5445b4a93f09072f9c7, type: 3}
   imageSurfaceOffset: 0
   imageScale: 0.0006
   imageRotationOffset: {x: 0, y: 0, z: 0}
