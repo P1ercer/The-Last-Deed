@@ -34,6 +34,7 @@ TagManager:
   - Road
   - projectile
   - paper
+  - environmental
   layers:
   - Default
   - TransparentFX

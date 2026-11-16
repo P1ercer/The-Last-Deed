@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.XR;
@@ -51,8 +52,28 @@ namespace GameAssets.Scripts
         [SerializeField] private float gizmoTextSize = 18f;
         [SerializeField] private float gizmoRadius = 1.5f;
 
+        [Header("Respawn")]
+        [SerializeField] private Transform deskRespawnPoint;
+
+        private static readonly Dictionary<Decision, DecisionStamp> activeStamps =
+            new Dictionary<Decision, DecisionStamp>();
+
+        private bool isRespawning;
+
         private void Awake()
         {
+            if (activeStamps.TryGetValue(
+                    decision,
+                    out DecisionStamp existingStamp) &&
+                existingStamp != null &&
+                existingStamp != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            activeStamps[decision] = this;
+
             FindStampInteractable();
 
             if (stampInteractable == null)
@@ -336,8 +357,6 @@ namespace GameAssets.Scripts
 
         }
 
-     
-
         private void CreateDecisionLabel(GameObject stampedObject)
         {
             GameObject labelObject = new GameObject("Decision Label");
@@ -392,6 +411,86 @@ namespace GameAssets.Scripts
             if (stampInteractable == null)
             {
                 stampInteractable = GetComponentInParent<XRBaseInteractable>();
+            }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (IsEnvironmental(collision.collider))
+            {
+                RespawnStamp();
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (IsEnvironmental(other))
+            {
+                RespawnStamp();
+            }
+        }
+
+        private bool IsEnvironmental(Collider collider)
+        {
+            Transform currentTransform = collider.transform;
+
+            while (currentTransform != null)
+            {
+                if (currentTransform.CompareTag("environmental"))
+                {
+                    return true;
+                }
+
+                currentTransform = currentTransform.parent;
+            }
+
+            return false;
+        }
+
+        private void RespawnStamp()
+        {
+            if (isRespawning ||
+                deskRespawnPoint == null)
+            {
+                return;
+            }
+
+            isRespawning = true;
+
+            activeStamps.Remove(decision);
+
+            // Instantiate while the current stamp is still active.
+            GameObject replacementStamp =
+                Instantiate(
+                    gameObject,
+                    deskRespawnPoint.position,
+                    deskRespawnPoint.rotation);
+
+            Rigidbody[] rigidbodies =
+                replacementStamp.GetComponentsInChildren<Rigidbody>(
+                    true);
+
+            foreach (Rigidbody rigidbody in rigidbodies)
+            {
+                rigidbody.isKinematic = false;
+                rigidbody.useGravity = true;
+                rigidbody.linearVelocity = Vector3.zero;
+                rigidbody.angularVelocity = Vector3.zero;
+            }
+
+            // Disable and destroy the old stamp after creating the replacement.
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            if (activeStamps.TryGetValue(
+                    decision,
+                    out DecisionStamp registeredStamp) &&
+                registeredStamp == this)
+            {
+                activeStamps.Remove(decision);
             }
         }
 

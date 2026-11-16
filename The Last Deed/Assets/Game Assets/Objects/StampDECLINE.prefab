@@ -171,6 +171,7 @@ MonoBehaviour:
   gizmoTextHeight: 0.25
   gizmoTextSize: 18
   gizmoRadius: 1.5
+  deskRespawnPoint: {fileID: 0}
 --- !u!114 &66075880180867156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +352,59 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!1 &6301417444034285177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8989021954247671110}
+  - component: {fileID: 2534915517945641185}
+  m_Layer: 0
+  m_Name: StampNeck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8989021954247671110
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6301417444034285177}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0005, y: 0, z: 0.0011}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2442654812129439731}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2534915517945641185
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6301417444034285177}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.009791133, y: 0.008999737, z: 0.011036931}
+  m_Center: {x: 0.0006532799, y: 0.000036069185, z: 0.0029177533}
 --- !u!1001 &2768786750986962968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -421,6 +475,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 22ce9ccd228ae2e4ba7cb350290c1a81, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1281094786994438569}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 22ce9ccd228ae2e4ba7cb350290c1a81, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8989021954247671110}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 22ce9ccd228ae2e4ba7cb350290c1a81, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1903119871285646386}

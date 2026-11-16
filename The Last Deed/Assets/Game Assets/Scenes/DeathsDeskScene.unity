@@ -268,7 +268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7077000494786490128, guid: 5b388fadb0deaa848b470458a902a639, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.99
+      value: 18.349998
       objectReference: {fileID: 0}
     - target: {fileID: 7077000494786490128, guid: 5b388fadb0deaa848b470458a902a639, type: 3}
       propertyPath: m_LocalRotation.w
@@ -456,7 +456,7 @@ Transform:
   m_GameObject: {fileID: 737509921}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 12.48, y: 5.1, z: 15.918}
+  m_LocalPosition: {x: 12.48, y: 5.1, z: 18.278}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -474,21 +474,25 @@ PrefabInstance:
       propertyPath: queueManager
       value: 
       objectReference: {fileID: 2381155808041123336}
+    - target: {fileID: 2872757990535969081, guid: e3c724669728f894fa4619187aea982c, type: 3}
+      propertyPath: deskRespawnPoint
+      value: 
+      objectReference: {fileID: 2381155808041123338}
     - target: {fileID: 6263974889776817961, guid: e3c724669728f894fa4619187aea982c, type: 3}
       propertyPath: m_Name
       value: StampDECLINE
       objectReference: {fileID: 0}
     - target: {fileID: 7409946352903076183, guid: e3c724669728f894fa4619187aea982c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.399768
+      value: 13.118
       objectReference: {fileID: 0}
     - target: {fileID: 7409946352903076183, guid: e3c724669728f894fa4619187aea982c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.931
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7409946352903076183, guid: e3c724669728f894fa4619187aea982c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.28643
+      value: 17.946
       objectReference: {fileID: 0}
     - target: {fileID: 7409946352903076183, guid: e3c724669728f894fa4619187aea982c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -547,7 +551,7 @@ GameObject:
   - component: {fileID: 932668366}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: environmental
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -641,7 +645,7 @@ GameObject:
   - component: {fileID: 967388957}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: environmental
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -703,7 +707,7 @@ GameObject:
   - component: {fileID: 971576004}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: environmental
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -765,7 +769,7 @@ GameObject:
   - component: {fileID: 1426543386}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: environmental
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -827,7 +831,7 @@ GameObject:
   - component: {fileID: 1494032678}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: environmental
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -888,21 +892,25 @@ PrefabInstance:
       propertyPath: queueManager
       value: 
       objectReference: {fileID: 2381155808041123336}
+    - target: {fileID: 4736087637605154254, guid: 7d23e8a63f6fef94c9de4c830a59521b, type: 3}
+      propertyPath: deskRespawnPoint
+      value: 
+      objectReference: {fileID: 2381155808041123337}
     - target: {fileID: 6125540499244869698, guid: 7d23e8a63f6fef94c9de4c830a59521b, type: 3}
       propertyPath: m_Name
       value: StampACCEPT
       objectReference: {fileID: 0}
     - target: {fileID: 8802094812043609677, guid: 7d23e8a63f6fef94c9de4c830a59521b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.216514
+      value: 13.080001
       objectReference: {fileID: 0}
     - target: {fileID: 8802094812043609677, guid: 7d23e8a63f6fef94c9de4c830a59521b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.969
+      value: 1.037
       objectReference: {fileID: 0}
     - target: {fileID: 8802094812043609677, guid: 7d23e8a63f6fef94c9de4c830a59521b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.328173
+      value: 17.498001
       objectReference: {fileID: 0}
     - target: {fileID: 8802094812043609677, guid: 7d23e8a63f6fef94c9de4c830a59521b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -956,6 +964,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 348229155342387698, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.345
+      objectReference: {fileID: 0}
+    - target: {fileID: 348229155342387698, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.814
+      objectReference: {fileID: 0}
     - target: {fileID: 1401570975418356371, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
       propertyPath: vrEyes
       value: 
@@ -980,14 +996,6 @@ PrefabInstance:
       propertyPath: onNpcDeclined.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 907263024}
-    - target: {fileID: 1401570975418356371, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
-      propertyPath: onNpcAccepted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UseStamp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1401570975418356371, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
-      propertyPath: onNpcDeclined.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UseStamp
-      objectReference: {fileID: 0}
     - target: {fileID: 2221736952265670633, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.421107
@@ -998,7 +1006,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2221736952265670633, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.96
+      value: 18.32
       objectReference: {fileID: 0}
     - target: {fileID: 2221736952265670633, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1028,6 +1036,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2856921375466364485, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3549995
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856921375466364485, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.4100008
+      objectReference: {fileID: 0}
     - target: {fileID: 6092505394438388630, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
       propertyPath: m_Name
       value: Queue Manager
@@ -1048,6 +1064,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b951584fa8eecd4d98b804da075b71c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameAssets.Scripts.NpcQueueManager
+--- !u!4 &2381155808041123337 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 348229155342387698, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
+  m_PrefabInstance: {fileID: 2381155808041123335}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2381155808041123338 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2856921375466364485, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
+  m_PrefabInstance: {fileID: 2381155808041123335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
