@@ -58,10 +58,27 @@ namespace GameAssets.Scripts
         private static readonly Dictionary<Decision, DecisionStamp> activeStamps =
             new Dictionary<Decision, DecisionStamp>();
 
+        private static readonly Dictionary<Decision, Pose> respawnPoses =
+            new Dictionary<Decision, Pose>();
+
         private bool isRespawning;
+        private Vector3 respawnPosition;
+        private Quaternion respawnRotation;
+        private bool hasRespawnPose;
 
         private void Awake()
         {
+            Rigidbody stampRigidbody =
+                GetComponent<Rigidbody>();
+
+            if (stampRigidbody == null)
+            {
+                stampRigidbody =
+                    gameObject.AddComponent<Rigidbody>();
+            }
+
+            stampRigidbody.useGravity = true;
+
             if (activeStamps.TryGetValue(
                     decision,
                     out DecisionStamp existingStamp) &&
@@ -71,6 +88,31 @@ namespace GameAssets.Scripts
                 Destroy(gameObject);
                 return;
             }
+
+            Pose savedRespawnPose;
+            if (!respawnPoses.TryGetValue(
+                    decision,
+                    out savedRespawnPose))
+            {
+                if (deskRespawnPoint == null)
+                {
+                    Debug.LogWarning(
+                        "DecisionStamp requires a desk respawn point.",
+                        this);
+
+                    return;
+                }
+
+                savedRespawnPose = new Pose(
+                    deskRespawnPoint.position,
+                    deskRespawnPoint.rotation);
+
+                respawnPoses[decision] = savedRespawnPose;
+            }
+
+            respawnPosition = savedRespawnPose.position;
+            respawnRotation = savedRespawnPose.rotation;
+            hasRespawnPose = true;
 
             activeStamps[decision] = this;
 
@@ -416,18 +458,33 @@ namespace GameAssets.Scripts
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (IsEnvironmental(collision.collider))
-            {
-                RespawnStamp();
-            }
+            TryRespawnFromCollider(collision.collider);
+        }
+
+        private void OnCollisionStay(Collision collision)
+        {
+            TryRespawnFromCollider(collision.collider);
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (IsEnvironmental(other))
+            TryRespawnFromCollider(other);
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            TryRespawnFromCollider(other);
+        }
+
+        private void TryRespawnFromCollider(Collider collider)
+        {
+            if (isRespawning ||
+                !IsEnvironmental(collider))
             {
-                RespawnStamp();
+                return;
             }
+
+            RespawnStamp();
         }
 
         private bool IsEnvironmental(Collider collider)
@@ -436,7 +493,10 @@ namespace GameAssets.Scripts
 
             while (currentTransform != null)
             {
-                if (currentTransform.CompareTag("environmental"))
+                string objectTag = currentTransform.tag;
+
+                if (objectTag == "environmental" ||
+                    objectTag == "enviromental")
                 {
                     return true;
                 }
@@ -450,7 +510,7 @@ namespace GameAssets.Scripts
         private void RespawnStamp()
         {
             if (isRespawning ||
-                deskRespawnPoint == null)
+                !hasRespawnPose)
             {
                 return;
             }
@@ -459,12 +519,14 @@ namespace GameAssets.Scripts
 
             activeStamps.Remove(decision);
 
-            // Instantiate while the current stamp is still active.
             GameObject replacementStamp =
-                Instantiate(
-                    gameObject,
-                    deskRespawnPoint.position,
-                    deskRespawnPoint.rotation);
+                Instantiate(gameObject);
+
+            replacementStamp.transform.SetParent(null, true);
+
+            replacementStamp.transform.SetPositionAndRotation(
+                respawnPosition,
+                respawnRotation);
 
             Rigidbody[] rigidbodies =
                 replacementStamp.GetComponentsInChildren<Rigidbody>(
@@ -478,7 +540,6 @@ namespace GameAssets.Scripts
                 rigidbody.angularVelocity = Vector3.zero;
             }
 
-            // Disable and destroy the old stamp after creating the replacement.
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
