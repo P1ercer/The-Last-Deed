@@ -41,7 +41,7 @@ namespace GameAssets.Scripts
         [Header("Decision Image")]
         [SerializeField] private GameObject decisionImageCanvasPrefab;
         [SerializeField] private float imageSurfaceOffset = 0.001f;
-        [SerializeField] private float imageScale = 0.01f;
+        [SerializeField] private float imageScale = 0.1f;
         [SerializeField] private Vector3 imageRotationOffset;
 
         [Header("Gizmo")]
@@ -288,76 +288,55 @@ namespace GameAssets.Scripts
 
             foreach (Image image in images)
             {
-                image.preserveAspect = true;
+                if (image.sprite == null)
+                {
+                    continue;
+                }
+
                 image.type = Image.Type.Simple;
+                image.preserveAspect = true;
 
                 RectTransform imageRect =
                     image.rectTransform;
 
-                Vector3 originalImageScale =
-                    imageRect.localScale;
+                imageRect.localScale = Vector3.one;
 
-                float uniformImageScale =
-                    Mathf.Min(
-                        Mathf.Abs(originalImageScale.x),
-                        Mathf.Abs(originalImageScale.y));
+                float spriteAspectRatio =
+                    image.sprite.rect.width /
+                    image.sprite.rect.height;
 
-                imageRect.localScale =
-                    new Vector3(
-                        uniformImageScale,
-                        uniformImageScale,
-                        1f);
+                AspectRatioFitter aspectRatioFitter =
+                    image.GetComponent<AspectRatioFitter>();
 
-                imageRect.localRotation =
-                    Quaternion.identity;
+                if (aspectRatioFitter == null)
+                {
+                    aspectRatioFitter =
+                        image.gameObject.AddComponent<
+                            AspectRatioFitter>();
+                }
+
+                aspectRatioFitter.aspectMode =
+                    AspectRatioFitter.AspectMode.FitInParent;
+
+                aspectRatioFitter.aspectRatio =
+                    spriteAspectRatio;
             }
-
-            Vector3 desiredWorldScale =
-                decisionImage.transform.localScale;
-
-            Vector3 prefabScale =
-                decisionImage.transform.localScale;
-
-            float uniformPlaneScale =
-                (Mathf.Abs(prefabScale.x) +
-                 Mathf.Abs(prefabScale.y)) * 0.5f;
 
             decisionImage.transform.SetParent(
                 stampedObject.transform,
                 true);
 
-            Vector3 parentScale =
-                stampedObject.transform.lossyScale;
-
-            decisionImage.transform.localScale =
-                new Vector3(
-                    GetCompensatedScale(
-                        uniformPlaneScale,
-                        parentScale.x),
-                    GetCompensatedScale(
-                        uniformPlaneScale,
-                        parentScale.y),
-                    GetCompensatedScale(
-                        prefabScale.z,
-                        parentScale.z));
-
             decisionImage.transform.SetPositionAndRotation(
                 paperSurfacePoint +
                 paperSurfaceNormal * imageSurfaceOffset,
                 imageRotation);
+
+            decisionImage.transform.localScale =
+                Vector3.one * imageScale;
+
         }
 
-        private float GetCompensatedScale(
-            float desiredScale,
-            float parentScale)
-        {
-            if (Mathf.Abs(parentScale) <= 0.0001f)
-            {
-                return desiredScale;
-            }
-
-            return desiredScale / parentScale;
-        }
+     
 
         private void CreateDecisionLabel(GameObject stampedObject)
         {

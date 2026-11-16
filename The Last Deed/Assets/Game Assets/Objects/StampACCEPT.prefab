@@ -165,7 +165,7 @@ MonoBehaviour:
   paperStampDistance: 0.25
   decisionImageCanvasPrefab: {fileID: 0}
   imageSurfaceOffset: 0
-  imageScale: 0
+  imageScale: 0.0006
   imageRotationOffset: {x: 0, y: 0, z: 0}
   showGizmoDuringPlay: 0
   showGizmoInEditMode: 1
