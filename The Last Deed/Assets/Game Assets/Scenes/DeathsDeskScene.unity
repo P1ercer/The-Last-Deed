@@ -523,6 +523,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3c724669728f894fa4619187aea982c, type: 3}
+--- !u!114 &907263024 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2872757990535969081, guid: e3c724669728f894fa4619187aea982c, type: 3}
+  m_PrefabInstance: {fileID: 907263023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 612481046e1730e44b9dd544bd38ccaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameAssets.Scripts.DecisionStamp
 --- !u!1 &932668365
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +937,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d23e8a63f6fef94c9de4c830a59521b, type: 3}
+--- !u!114 &1771396217852663795 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4736087637605154254, guid: 7d23e8a63f6fef94c9de4c830a59521b, type: 3}
+  m_PrefabInstance: {fileID: 1771396217852663794}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 612481046e1730e44b9dd544bd38ccaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameAssets.Scripts.DecisionStamp
 --- !u!1001 &2381155808041123335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -950,6 +972,22 @@ PrefabInstance:
       propertyPath: dialoguePanelPrefab
       value: 
       objectReference: {fileID: 669853795}
+    - target: {fileID: 1401570975418356371, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
+      propertyPath: onNpcAccepted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1771396217852663795}
+    - target: {fileID: 1401570975418356371, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
+      propertyPath: onNpcDeclined.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 907263024}
+    - target: {fileID: 1401570975418356371, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
+      propertyPath: onNpcAccepted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UseStamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401570975418356371, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
+      propertyPath: onNpcDeclined.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UseStamp
+      objectReference: {fileID: 0}
     - target: {fileID: 2221736952265670633, guid: 81138ac19e625bf45ad983b909dc3e3b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.421107
