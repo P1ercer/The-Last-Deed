@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NpcBehavior : MonoBehaviour
 {
@@ -10,6 +12,92 @@ public class NpcBehavior : MonoBehaviour
     [Header("Object Placement")]
     [SerializeField] private Transform itemHoldPoint;
     [SerializeField] private float itemArcHeight = 0.25f;
+
+    [Header("Objective / Mission")]
+    [SerializeField, TextArea(2, 5)]
+    private string objective;
+
+    [SerializeField]
+    private List<MissionStage> missionStages =
+        new List<MissionStage>();
+
+    private int currentMissionStageIndex = -1;
+    private bool objectiveComplete;
+
+    public string Objective
+    {
+        get
+        {
+            MissionStage currentStage =
+                GetCurrentMissionStage();
+
+            return currentStage != null
+                ? currentStage.Objective
+                : objective;
+        }
+    }
+
+    public MissionStage CurrentMissionStage =>
+        GetCurrentMissionStage();
+
+    public int CurrentMissionStageIndex =>
+        currentMissionStageIndex;
+
+    public bool IsObjectiveComplete =>
+        missionStages.Count > 0
+            ? currentMissionStageIndex >= missionStages.Count
+            : objectiveComplete;
+
+    public void CompleteObjective()
+    {
+        if (missionStages.Count == 0)
+        {
+            objectiveComplete = true;
+
+            Debug.Log(
+                $"Objective completed for NPC {gameObject.name}: {objective}",
+                this);
+
+            return;
+        }
+
+        MissionStage currentStage =
+            GetCurrentMissionStage();
+
+        if (currentStage == null)
+        {
+            return;
+        }
+
+        currentStage.Complete();
+
+        Debug.Log(
+            $"Mission stage completed for NPC {gameObject.name}: " +
+            $"{currentStage.StageName}",
+            this);
+
+        currentMissionStageIndex++;
+    }
+
+    private MissionStage GetCurrentMissionStage()
+    {
+        if (missionStages.Count == 0)
+        {
+            return null;
+        }
+
+        if (currentMissionStageIndex < 0)
+        {
+            currentMissionStageIndex = 0;
+        }
+
+        if (currentMissionStageIndex >= missionStages.Count)
+        {
+            return null;
+        }
+
+        return missionStages[currentMissionStageIndex];
+    }
 
     private Vector3 destination;
     private Vector3 finalFacingDirection;
@@ -448,5 +536,33 @@ public class NpcBehavior : MonoBehaviour
         PlacedObject.transform.SetPositionAndRotation(
             holdPoint.position,
             holdPoint.rotation);
+    }
+}
+
+[System.Serializable]
+public class MissionStage
+{
+    [Header("Stage")]
+    [SerializeField] private string stageName;
+
+    [SerializeField, TextArea(2, 5)]
+    private string objective;
+
+    [Header("Assigned Object")]
+    [SerializeField] private UnityEngine.Object assignedThing;
+
+    [SerializeField] private string requiredTag;
+
+    [Header("Completion")]
+    [SerializeField] private UnityEvent onStageCompleted;
+
+    public string StageName => stageName;
+    public string Objective => objective;
+    public UnityEngine.Object AssignedThing => assignedThing;
+    public string RequiredTag => requiredTag;
+
+    public void Complete()
+    {
+        onStageCompleted?.Invoke();
     }
 }
