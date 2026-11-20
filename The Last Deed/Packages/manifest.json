@@ -29,6 +29,7 @@
     "com.unity.nuget.newtonsoft-json": "3.2.2",
     "com.unity.performance.profile-analyzer": "1.4.0",
     "com.unity.postprocessing": "3.5.4",
+    "com.unity.probuilder": "6.1.4",
     "com.unity.render-pipelines.core": "17.3.0",
     "com.unity.render-pipelines.universal": "17.3.0",
     "com.unity.render-pipelines.universal-config": "17.0.3",
