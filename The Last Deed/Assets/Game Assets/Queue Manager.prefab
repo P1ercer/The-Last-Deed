@@ -267,6 +267,7 @@ MonoBehaviour:
   dialoguePanelPrefab: {fileID: 0}
   dialogueLocalPosition: {x: 0, y: 0, z: 1.5}
   objectRetrievalDuration: 1.25
+  acceptedNpcSceneName: DeathsDeskScene
 --- !u!1 &7274300756630789765
 GameObject:
   m_ObjectHideFlags: 0

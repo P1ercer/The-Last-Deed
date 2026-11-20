@@ -4,6 +4,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace GameAssets.Scripts
 {
@@ -65,6 +66,9 @@ namespace GameAssets.Scripts
         [Header("NPC Retrieval")]
         [SerializeField] private float objectRetrievalDuration = 1.25f;
 
+        [Header("Accepted NPC Scene")]
+        [SerializeField] private string acceptedNpcSceneName;
+
         private readonly List<NpcBehavior> npcs =
             new List<NpcBehavior>();
 
@@ -73,6 +77,12 @@ namespace GameAssets.Scripts
         private bool dialogueStarted;
         private bool dialogueFinished;
         private bool isResolving;
+
+        public static NpcBehavior AcceptedNpc
+        {
+            get;
+            private set;
+        }
 
         private void Start()
         {
@@ -261,8 +271,35 @@ namespace GameAssets.Scripts
                 return false;
             }
 
-            ResolveCurrentNpc();
+            NpcBehavior acceptedNpc =
+                npcs[0];
+
+            AcceptedNpc = acceptedNpc;
+
+            Debug.Log(
+                $"Accepted NPC: {acceptedNpc.gameObject.name}\n" +
+                $"Objective: {acceptedNpc.Objective}",
+                acceptedNpc);
+
+            acceptedNpc.transform.SetParent(null, true);
+
+            DontDestroyOnLoad(acceptedNpc.gameObject);
+
             onNpcAccepted?.Invoke();
+
+            if (!string.IsNullOrWhiteSpace(acceptedNpcSceneName))
+            {
+                StartCoroutine(
+                    LoadAcceptedNpcScene());
+            }
+            else
+            {
+                Debug.LogWarning(
+                    "NpcQueueManager requires an accepted NPC scene name.",
+                    this);
+            }
+
+            acceptedNpc.CompleteObjective();
 
             return true;
         }
@@ -497,6 +534,14 @@ namespace GameAssets.Scripts
             Gizmos.DrawLine(arrowEnd, leftArrowHead);
             Gizmos.DrawLine(arrowEnd, rightArrowHead);
             Gizmos.DrawSphere(arrowStart, 0.05f);
+        }
+
+        private IEnumerator LoadAcceptedNpcScene()
+        {
+            yield return null;
+
+            SceneManager.LoadScene(
+                acceptedNpcSceneName);
         }
     }
 }
